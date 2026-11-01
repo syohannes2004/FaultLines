@@ -24,6 +24,7 @@ const T0 = Date.now(), mins = () => (Date.now() - T0) / 60000;
 const NEWS_BUDGET = 9, TOTAL_BUDGET = 17; // minutes; the job is killed at 30
 const log = (...a) => console.log(`[${mins().toFixed(1)}m]`, ...a);
 const rss = { ok: 0, empty: 0, http: {}, err: 0 };
+let gdeltWait = 6000;
 
 const NAMES = {
   USA: 'United States', COD: 'Democratic Republic of Congo', COG: 'Republic of Congo', TZA: 'Tanzania', CAF: 'Central African Republic',
@@ -105,13 +106,16 @@ async function writeBullets(events) {
   try {
     const r = await fetch('https://models.github.ai/inference/chat/completions', {
       method: 'POST', signal: AbortSignal.timeout(90000),
-      headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json', Accept: 'application/json' },
+      headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json', Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
       body: JSON.stringify({ model: MODEL, temperature: 0.2, response_format: { type: 'json_object' },
         messages: [{ role: 'system', content: sys }, { role: 'user', content: JSON.stringify(list) }] })
     });
-    if (!r.ok) { status.model = `AI unavailable (${r.status})`; return null; }
-    const j = await r.json();
-    const parsed = JSON.parse(j.choices[0].message.content);
+    const raw = await r.text();
+    if (!r.ok) { status.model = `AI unavailable (${r.status})`; log('AI', r.status, raw.slice(0, 300)); return null; }
+    let j;
+    try { j = JSON.parse(raw); } catch (e) { log('AI odd reply', r.status, r.url, JSON.stringify(raw.slice(0, 300))); throw e; }
+    let txt = j.choices[0].message.content.trim().replace(/^```(?:json)?\s*|\s*```$/g, '');
+    const parsed = JSON.parse(txt);
     status.model = MODEL;
     return parsed.items || [];
   } catch (e) { status.model = 'AI error: ' + e.message; return null; }
@@ -122,8 +126,8 @@ async function gdelt(name) {
   const q = `${name.includes(' OR ') ? '(' + name + ')' : '"' + name + '"'} (theme:ARMEDCONFLICT OR theme:TERROR OR theme:PROTEST OR theme:KILL)`;
   const url = `https://api.gdeltproject.org/api/v2/doc/doc?query=${encodeURIComponent(q)}&mode=timelinevolraw&timespan=8d&format=json`;
   try {
-    const r = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(10000) });
-    if (!r.ok) { log('GDELT', name, 'HTTP', r.status); return null; }
+    const r = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(30000) });
+    if (!r.ok) { log('GDELT', name, 'HTTP', r.status); if (r.status === 429) gdeltWait = Math.min(gdeltWait * 2, 30000); return null; }
     const j = await r.json();
     const data = (j.timeline && j.timeline[0] && j.timeline[0].data) || [];
     const byDay = {};
@@ -208,13 +212,13 @@ async function main() {
     const part = all.filter((c, k) => k % 5 === Math.floor(NOW / H) % 5);
     let n = 0, fails = 0;
     for (const c of part) {
-      if (mins() > TOTAL_BUDGET || fails >= 4) break;
+      if (mins() > TOTAL_BUDGET || fails >= 5) break;
       const g = await gdelt(c.name);
       if (g) { state.gdelt[c.iso] = { r: Math.round(g.ratio * 100) / 100, n: g.last, at: NOW }; n++; fails = 0; } else fails++;
-      await sleep(5200);
+      await sleep(gdeltWait);
     }
     if (n) state.gdeltAt = NOW;
-    status.gdelt = `checked ${n} of ${part.length} countries${fails >= 4 ? ' (GDELT not answering)' : ''}`;
+    status.gdelt = `checked ${n} of ${part.length} countries${fails >= 5 ? ' (GDELT not answering)' : ''}`;
     log('GDELT', status.gdelt);
   }
   // raise a level only when coverage spikes AND major outlets confirmed news in the last 48 h
