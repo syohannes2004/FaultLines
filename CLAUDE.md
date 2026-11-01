@@ -32,7 +32,7 @@ Owner: Simon.  He mostly works from his phone, so keep replies short and test th
 - `lib/app.js` builds the globe, labels, panel and bottom-sheet gestures. It is plain DOM code, not React components.
 - `app/api/news/route.js` serves live headlines from Google News RSS, keeping only outlets on the list in `lib/sources.js`. It caches for 10 minutes, and `&fresh=1` bypasses the cache.
 - `app/api/country/route.js` is the live data for every country, cached for a day: World Bank history, IMF World Economic Outlook forecasts, and Wikidata (leaders with start dates, system, capital, currency, memberships).
-- `app/api/preview/route.js` returns an article's own summary (og:description) for trusted outlets only. `app/api/ask/route.js` is the AI assistant and needs `ANTHROPIC_API_KEY` in Vercel.
+- `app/api/preview/route.js` returns an article's own summary (og:description) for trusted outlets only. `app/api/ask/route.js` is the AI assistant: Google Gemini when `GEMINI_API_KEY` is set in Vercel (free tier, tries Google Search grounding first; optional `GEMINI_MODEL`), otherwise Anthropic with `ANTHROPIC_API_KEY`.
 - `app/api/markets/route.js` serves currency rates (ECB via Frankfurter), gold (gold-api.com) and bitcoin (Coinbase), cached for 15 minutes.
 - `components/GlobeApp.jsx` holds the static markup and loads `lib/app.js` in the browser.
 - `app/globals.css` holds all styles. Colors are tokens on `:root`, and the page has a single dark theme.
