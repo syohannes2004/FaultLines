@@ -1,6 +1,6 @@
 import { isTrusted } from '../../../lib/sources';
 
-/* Live headlines from major outlets, gathered through Google News RSS.
+/* Live headlines from major outlets, gathered from Google News and Bing News RSS (Bing adds summaries).
    GET /api/news?q="Ethiopia"   -> country or keyword search (last 2 days, widened to 7 if thin)
    GET /api/news?topic=WORLD    -> WORLD | BUSINESS | TECHNOLOGY | NATION
    Add &fresh=1 to skip the 10-minute cache (the Refresh button). */
@@ -51,21 +51,50 @@ export function clean(items, limit) {
       seen.add(key);
       return true;
     })
+    .map(it => ({ ...it, sum: it.sum || '', direct: !!it.direct }))
     .slice(0, limit)
     .map(({ host, ...rest }) => rest);
 }
 
-async function getFeed(url, fresh) {
+async function getText(url, fresh) {
   const r = await fetch(url, {
     headers: { 'User-Agent': UA, Accept: 'application/rss+xml, application/xml, text/xml' },
     ...(fresh ? { cache: 'no-store' } : { next: { revalidate: 600 } })
   });
   if (!r.ok) throw new Error('feed ' + r.status);
-  return parseRss(await r.text());
+  return r.text();
 }
+async function getFeed(url, fresh) { return parseRss(await getText(url, fresh)); }
 
-const base = 'https://news.google.com/rss';
-const loc = 'hl=en-US&gl=US&ceid=US:en';
+/* Bing News RSS gives direct article links and a short summary for each story. */
+export function parseBing(xml) {
+  const out = [];
+  for (const raw of xml.split(/<item[\s>]/).slice(1)) {
+    const block = raw.split('</item>')[0];
+    const title = pick(block, 'title');
+    let link = pick(block, 'link');
+    const date = Date.parse(pick(block, 'pubDate'));
+    const sum = pick(block, 'description').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const source = pick(block, 'News:Source');
+    try { const u = new URL(link); const real = u.searchParams.get('url'); if (real) link = real; } catch (e) { /* keep link */ }
+    let host = '';
+    try { host = new URL(link).hostname; } catch (e) { continue; }
+    if (!title || !isFinite(date)) continue;
+    out.push({ title, url: link, source: source || host.replace(/^www\./, ''), host, ts: date, sum, direct: true });
+  }
+  return out;
+}
+async function getBing(q, fresh) {
+  try {
+    return parseBing(await getText(`https://www.bing.com/news/search?q=${encodeURIComponent(q)}&format=rss&mkt=en-US&qft=sortbydate%3d%221%22`, fresh));
+  } catch (e) { return []; }
+}
+const BING_TOPIC = { WORLD: 'world news', BUSINESS: 'economy markets', TECHNOLOGY: 'technology artificial intelligence', NATION: 'US politics', SCIENCE: 'science' };
+async function merged(googleUrl, bingQ, fresh, limit) {
+  const [g, b] = await Promise.all([getFeed(googleUrl, fresh).catch(() => []), getBing(bingQ, fresh)]);
+  if (!g.length && !b.length) throw new Error('no feeds');
+  return clean(b.concat(g), limit);
+}
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
@@ -75,12 +104,12 @@ export async function GET(req) {
   try {
     let items;
     if (TOPICS.has(topic)) {
-      items = clean(await getFeed(`${base}/headlines/section/topic/${topic}?${loc}`, fresh), 15);
+      items = await merged(`${base}/headlines/section/topic/${topic}?${loc}`, BING_TOPIC[topic], fresh, 15);
     } else if (q) {
-      items = clean(await getFeed(`${base}/search?q=${encodeURIComponent(q + ' when:2d')}&${loc}`, fresh), 12);
+      items = await merged(`${base}/search?q=${encodeURIComponent(q + ' when:2d')}&${loc}`, q, fresh, 12);
       if (items.length < 4) {
-        const wider = clean(await getFeed(`${base}/search?q=${encodeURIComponent(q + ' when:7d')}&${loc}`, fresh), 12);
-        if (wider.length > items.length) items = wider;
+        const wider = clean(await getFeed(`${base}/search?q=${encodeURIComponent(q + ' when:7d')}&${loc}`, fresh).catch(() => []), 12);
+        if (wider.length > items.length) items = clean(items.concat(wider), 12);
       }
     } else {
       return Response.json({ error: 'Pass q or topic.' }, { status: 400 });
