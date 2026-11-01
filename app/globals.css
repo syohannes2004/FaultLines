@@ -521,3 +521,21 @@ body[data-product="pulse"] .mark {
   .panel { animation: none; }
   .live-dot { animation: none; }
 }
+
+/* ---------- live updates: What's new ---------- */
+.sec.wn { margin-top: 16px; padding: 12px 14px 10px; border: 1px solid var(--line-strong); border-radius: 12px; background: rgba(143, 208, 255, 0.05); }
+.sec.wn h3 { color: var(--accent); }
+.wnlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.wnlist + .wnlist { margin-top: 10px; }
+.wni { display: grid; gap: 4px; }
+.wni + .wni { padding-top: 10px; border-top: 1px solid var(--line); }
+.wnt { font-size: 14.5px; line-height: 1.45; }
+.wnt .cl { margin-right: 6px; color: var(--fg); font-weight: 600; font-size: inherit; }
+.wnm { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 12px; color: var(--muted); }
+.wnm time { font-family: var(--mono); font-size: 11px; }
+.wnm a { color: var(--accent); text-decoration: none; }
+.wnm a:hover { text-decoration: underline; }
+.wnauto { margin: 0 0 10px; font-size: 13px; line-height: 1.45; }
+.wnauto .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; }
+.sec.wn .morebtn { margin-top: 8px; }
+.sec.wn .srcnote { margin: 10px 0 0; }

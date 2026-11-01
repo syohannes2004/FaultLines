@@ -37,6 +37,13 @@ Owner: Simon.  He mostly works from his phone, so keep replies short and test th
 - `components/GlobeApp.jsx` holds the static markup and loads `lib/app.js` in the browser.
 - `app/globals.css` holds all styles. Colors are tokens on `:root`, and the page has a single dark theme.
 
+## Live updates (free, automatic)
+- `.github/workflows/update.yml` runs `scripts/update.mjs` every hour at :17 (repo is public, so Actions minutes are free). It can also be run by hand from the Actions tab.
+- The script pulls Google News RSS per country (trusted outlets only), groups headlines into events, keeps events seen by 2+ outlets, and has free GitHub Models AI (`openai/gpt-4.1-mini`) write one neutral bullet per event. Without the AI, events with 3+ outlets use the headline.
+- Every ~6 hours it checks GDELT coverage of conflict and unrest. A spike (2.5x normal, 60+ articles) plus confirmed news in the last 48 h raises a country's map level by one step for 72 hours.
+- Output: `public/updates.json` (`news`, `auto`, `feed`, `status`). The site loads it every 15 minutes and shows "What's new" at the top of each country panel and "Latest updates" in Pulse > News.
+- The updater never edits `data/content.js`. A weekly Claude scheduled task (Sundays 4:30 PM Toronto) reads `public/updates.json`, verifies the past week with web searches, and folds real changes into `B`, `BRIEF`, `PULSE`, `LINKS`, `LEADERS` and `UPDATED`.
+
 ## Content rules
 - Prices are shown in CAD first, with USD alongside, because that is the owner's preference.
 - Every briefing, link and place must be factually current. Check current leaders and conflict status with a web search before writing, and put the sources in `sources` or `src`.

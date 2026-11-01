@@ -1,0 +1,40 @@
+name: Live updates
+
+on:
+  schedule:
+    - cron: '17 * * * *'   # every hour, at :17
+  workflow_dispatch: {}      # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write   # commit public/updates.json
+  models: read      # free GitHub Models AI
+
+concurrency:
+  group: live-updates
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Gather news and write updates
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/update.mjs
+      - name: Publish if anything changed
+        run: |
+          if git diff --quiet -- public/updates.json; then
+            echo "No changes"
+          else
+            git config user.name "fault-lines-bot"
+            git config user.email "fault-lines-bot@users.noreply.github.com"
+            git add public/updates.json
+            git commit -m "Live update $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git pull --rebase origin main
+            git push
+          fi
