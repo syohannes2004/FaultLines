@@ -20,6 +20,10 @@ const MODEL = process.env.UPDATE_MODEL || 'openai/gpt-4.1-mini';
 const TOKEN = process.env.GITHUB_TOKEN;
 const UA = 'Mozilla/5.0 (compatible; FaultLinesUpdater/1.0; +https://github.com)';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const T0 = Date.now(), mins = () => (Date.now() - T0) / 60000;
+const NEWS_BUDGET = 9, TOTAL_BUDGET = 17; // minutes; the job is killed at 30
+const log = (...a) => console.log(`[${mins().toFixed(1)}m]`, ...a);
+const rss = { ok: 0, empty: 0, http: {}, err: 0 };
 
 const NAMES = {
   USA: 'United States', COD: 'Democratic Republic of Congo', COG: 'Republic of Congo', TZA: 'Tanzania', CAF: 'Central African Republic',
@@ -60,11 +64,12 @@ async function headlines(iso, name) {
   const url = `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const r = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(15000) });
-      if (r.status === 429) { await sleep(5000); continue; }
-      if (!r.ok) return [];
-      return parseRss(await r.text()).filter(it => isTrusted(it.host) && NOW - it.ts < 36 * H && !NOISE.test(it.title));
-    } catch (e) { await sleep(1500); }
+      const r = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(10000) });
+      if (!r.ok) { rss.http[r.status] = (rss.http[r.status] || 0) + 1; if (r.status === 429 || r.status >= 500) { await sleep(3000); continue; } return []; }
+      const all = parseRss(await r.text());
+      all.length ? rss.ok++ : rss.empty++;
+      return all.filter(it => isTrusted(it.host) && NOW - it.ts < 36 * H && !NOISE.test(it.title));
+    } catch (e) { rss.err++; await sleep(1000); }
   }
   return [];
 }
@@ -117,8 +122,8 @@ async function gdelt(name) {
   const q = `${name.includes(' OR ') ? '(' + name + ')' : '"' + name + '"'} (theme:ARMEDCONFLICT OR theme:TERROR OR theme:PROTEST OR theme:KILL)`;
   const url = `https://api.gdeltproject.org/api/v2/doc/doc?query=${encodeURIComponent(q)}&mode=timelinevolraw&timespan=8d&format=json`;
   try {
-    const r = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(15000) });
-    if (!r.ok) return null;
+    const r = await fetch(url, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(10000) });
+    if (!r.ok) { log('GDELT', name, 'HTTP', r.status); return null; }
     const j = await r.json();
     const data = (j.timeline && j.timeline[0] && j.timeline[0].data) || [];
     const byDay = {};
@@ -129,7 +134,7 @@ async function gdelt(name) {
     const prev = days.slice(0, -2).map(d => byDay[d]);
     const base = prev.reduce((a, b) => a + b, 0) / prev.length * 2;
     return { last, base, ratio: base > 0 ? last / base : 0 };
-  } catch (e) { return null; }
+  } catch (e) { log('GDELT', name, e.name); return null; }
 }
 
 /* ---------- main ---------- */
@@ -151,7 +156,10 @@ async function main() {
   status.countries = batch.length;
 
   const events = [];
+  log(`Checking news for ${batch.length} countries`);
   for (let k = 0; k < batch.length; k += 3) {
+    if (mins() > NEWS_BUDGET) { log('News time budget reached at', k); break; }
+    if (k === 15 && rss.ok + rss.empty === 0) { log('Google News is not answering, skipping news this run', JSON.stringify(rss)); break; }
     const part = batch.slice(k, k + 3);
     const res = await Promise.all(part.map(c => headlines(c.iso, c.name)));
     part.forEach((c, n) => {
@@ -164,10 +172,13 @@ async function main() {
     await sleep(400);
   }
   status.events = events.length;
+  status.rss = rss;
+  log('News done', JSON.stringify(rss), 'events', events.length);
 
   // the AI handles up to 30 events per run (free-tier friendly); the rest wait for the next run
   const todo = events.slice(0, 30);
   const ai = await writeBullets(todo);
+  log('AI', status.model);
   todo.forEach((e, k) => {
     const v = ai ? ai.find(x => x.id === k) : null;
     let text = null, isAi = false;
@@ -191,20 +202,25 @@ async function main() {
   });
   state.feed = state.feed.filter(f => state.news[f.iso] && state.news[f.iso].some(n => n.id === f.id)).slice(0, 60);
 
-  // GDELT every 6 hours (it asks for one request every 5 seconds)
-  if (NOW - (state.gdeltAt || 0) > 5.5 * H) {
-    let n = 0;
-    for (const c of all) {
+  // GDELT: one fifth of countries per run, so every country is checked about every 5 hours
+  // (GDELT asks for one request every 5 seconds)
+  {
+    const part = all.filter((c, k) => k % 5 === Math.floor(NOW / H) % 5);
+    let n = 0, fails = 0;
+    for (const c of part) {
+      if (mins() > TOTAL_BUDGET || fails >= 4) break;
       const g = await gdelt(c.name);
-      if (g) { state.gdelt[c.iso] = { r: Math.round(g.ratio * 100) / 100, n: g.last }; n++; }
+      if (g) { state.gdelt[c.iso] = { r: Math.round(g.ratio * 100) / 100, n: g.last, at: NOW }; n++; fails = 0; } else fails++;
       await sleep(5200);
     }
-    state.gdeltAt = NOW;
-    status.gdelt = `checked ${n} countries`;
+    if (n) state.gdeltAt = NOW;
+    status.gdelt = `checked ${n} of ${part.length} countries${fails >= 4 ? ' (GDELT not answering)' : ''}`;
+    log('GDELT', status.gdelt);
   }
   // raise a level only when coverage spikes AND major outlets confirmed news in the last 48 h
   all.forEach(c => {
     const g = state.gdelt[c.iso], base = staticLevel(c.iso);
+    if (g && g.at && NOW - g.at > 12 * H) return;
     const confirmed = (state.news[c.iso] || []).some(n => NOW - n.at < 48 * H);
     if (g && g.r >= 2.5 && g.n >= 60 && confirmed && base < 3) {
       state.auto[c.iso] = { lv: base + 1, from: base, at: NOW, until: NOW + 72 * H,
