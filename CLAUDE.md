@@ -1,6 +1,10 @@
 # Fault Lines
 
-Interactive 3D globe that briefs people on wars, disputes and political tension, country by country. Owner: Simon. He mostly works from his phone, so keep replies short and test that changes work at phone width (about 390px).
+Interactive 3D globe with two views, switched by tapping the brand at top left (or the `#pulse` link):
+- **Fault Lines**: wars, disputes and political tension, country by country.
+- **Pulse**: elections, economy and prices, trade wars, energy and shipping, AI and tech, protests, gangs and crime, plus live markets and live headlines.
+
+Owner: Simon.  He mostly works from his phone, so keep replies short and test that changes work at phone width (about 390px).
 
 ## Stack
 - Next.js 16 (App Router), plain JavaScript, no TypeScript.
@@ -14,6 +18,8 @@ Interactive 3D globe that briefs people on wars, disputes and political tension,
   - `LINKS`: connections between countries.
   - `HOTS`: hotspot markers.
   - `PLACES`: where each conflict happens inside a country.
+  - `WATERS`: ocean, sea and strait labels.
+  - `PULSE_THEMES` and `PULSE`: Pulse themes and stories. A story has `theme`, `iso` (a list), `date`, `t` (the title), `d` (the text), `src`, and an optional map `pin` as [lat, lng, label].
   - `UPDATED`: the date shown on briefings.
 - `data/countries.json` holds Natural Earth 1:110m country shapes. Each country has:
   - `iso`, the ISO-3 code, and `a2`, the ISO-2 code used for flags.
@@ -22,14 +28,17 @@ Interactive 3D globe that briefs people on wars, disputes and political tension,
   - `lx` and `ly`, the label point's longitude and latitude.
   - `ar`, the country's size, used for label tiers.
 - `lib/app.js` builds the globe, labels, panel and bottom-sheet gestures. It is plain DOM code, not React components.
+- `app/api/news/route.js` serves live headlines from Google News RSS, keeping only outlets on the list in `lib/sources.js`. It caches for 10 minutes, and `&fresh=1` bypasses the cache.
+- `app/api/markets/route.js` serves currency rates (ECB via Frankfurter), gold (gold-api.com) and bitcoin (Coinbase), cached for 15 minutes.
 - `components/GlobeApp.jsx` holds the static markup and loads `lib/app.js` in the browser.
 - `app/globals.css` holds all styles. Colors are tokens on `:root`, and the page has a single dark theme.
 
 ## Content rules
+- Prices are shown in CAD first, with USD alongside, because that is the owner's preference.
 - Every briefing, link and place must be factually current. Check current leaders and conflict status with a web search before writing, and put the sources in `sources` or `src`.
 - Keep the tone neutral and factual. Attribute contested claims ("the UN says", "Rwanda denies").
 - `lv` levels: 3 is Active conflict, 2 is High tension, 1 is Watch.
-- Link `tier` levels: 1 is Major, 2 is Notable, 3 is All. Link `type` is `conflict`, `dispute`, `alliance` or `diplomacy`.
+- Link `tier` levels: 1 is Major, 2 is Notable, 3 is Significant, 4 is Minor, 5 is Everything. The Detail control also shows more place names at higher levels. Link `type` is `conflict`, `dispute`, `alliance` or `diplomacy`.
 - Each `PLACES[iso].ip` array maps briefing issues, in order, to a place index. Use `null` for an issue with no single location. Its length must equal `issues.length`.
 - For a link, `br` lists `[iso, placeName]` pairs, and each one must exist in `PLACES`. `hub` is where the main arc lands before it branches.
 - Bump `UPDATED` whenever briefings change.
@@ -43,7 +52,7 @@ Interactive 3D globe that briefs people on wars, disputes and political tension,
 1. State, province and city names for the selected country only. Load Natural Earth admin-1 (1:10m) shapes on demand for that country, not globally.
 2. More countries with full briefings, eventually all of them.
 3. More connections at the Notable and All tiers, such as trade disputes.
-4. A live "latest news" strip per country, for example GDELT fetched server-side in a Next.js route.
+4. Live news is done. Next: per-theme news queries in Pulse, and oil prices, which need an API key.
 5. Current population and GDP figures, for example from the World Bank API at build time.
 6. A typography and UI polish pass, once the owner decides what he wants.
 7. Supabase only if an admin editor or stored news is needed.

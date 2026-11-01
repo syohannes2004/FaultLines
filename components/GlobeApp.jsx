@@ -26,24 +26,15 @@ export default function GlobeApp() {
       />
 
       <header className="top">
-        <div className="brand">
+        <button type="button" className="brand" id="product" aria-label="Switch between Fault Lines and Pulse">
           <span className="mark" aria-hidden="true" />
-          <div>
-            <h1>Fault Lines</h1>
-            <p className="sub">Conflicts &amp; political tension · briefings updated Nov 1, 2026</p>
-          </div>
-        </div>
-        <div className="modes" role="tablist" aria-label="Map view">
-          <button role="tab" id="mode-explore" data-mode="explore" aria-selected="true">
-            <span className="ico" />Explore
-          </button>
-          <button role="tab" id="mode-connections" data-mode="connections" aria-selected="false">
-            <span className="ico" />Connections
-          </button>
-          <button role="tab" id="mode-hotspots" data-mode="hotspots" aria-selected="false">
-            <span className="ico" />Hotspots
-          </button>
-        </div>
+          <span className="btext">
+            <span className="bname" id="bname">Fault Lines</span>
+            <span className="sub" id="bsub">Conflicts &amp; political tension · briefings updated Nov 1, 2026</span>
+          </span>
+          <span className="swap" id="bswap">⇄ Pulse</span>
+        </button>
+        <div className="modes" role="tablist" aria-label="Map view" />
         <div className="tools">
           <label className="field" id="metric-field">
             <span>Color by</span>
@@ -59,12 +50,11 @@ export default function GlobeApp() {
           </label>
           <datalist id="names" />
         </div>
-        <nav className="watch" id="watch" aria-label="Active conflicts">
-          <span className="watch-h">Active conflicts</span>
-        </nav>
+        <nav className="watch" id="watch" aria-label="Quick picks" />
       </header>
 
       <div className="legend" id="legend" />
+      <div className="detailctl" id="detailctl" />
 
       <aside className="panel" id="panel" hidden aria-live="polite">
         <div className="sheet-head" id="sheet-head">
