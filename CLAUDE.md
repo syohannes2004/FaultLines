@@ -20,6 +20,8 @@ Owner: Simon.  He mostly works from his phone, so keep replies short and test th
   - `PLACES`: where each conflict happens inside a country.
   - `WATERS`: ocean, sea and strait labels.
   - `PULSE_THEMES` and `PULSE`: Pulse themes and stories. A story has `theme`, `iso` (a list), `date`, `t` (the title), `d` (the text), `src`, and an optional map `pin` as [lat, lng, label].
+  - `BRIEF`: an overview for every country: `s` (what to know), `e` (economy now and outlook), `i` (key issues), `w` (what to watch), and `lv` (tension level for countries without a full `B` briefing).
+  - `LEADERS`: leader profiles, `PULSE_LINKS`: economic ties shown in Pulse.
   - `UPDATED`: the date shown on briefings.
 - `data/countries.json` holds Natural Earth 1:110m country shapes. Each country has:
   - `iso`, the ISO-3 code, and `a2`, the ISO-2 code used for flags.
@@ -29,6 +31,8 @@ Owner: Simon.  He mostly works from his phone, so keep replies short and test th
   - `ar`, the country's size, used for label tiers.
 - `lib/app.js` builds the globe, labels, panel and bottom-sheet gestures. It is plain DOM code, not React components.
 - `app/api/news/route.js` serves live headlines from Google News RSS, keeping only outlets on the list in `lib/sources.js`. It caches for 10 minutes, and `&fresh=1` bypasses the cache.
+- `app/api/country/route.js` is the live data for every country, cached for a day: World Bank history, IMF World Economic Outlook forecasts, and Wikidata (leaders with start dates, system, capital, currency, memberships).
+- `app/api/preview/route.js` returns an article's own summary (og:description) for trusted outlets only. `app/api/ask/route.js` is the AI assistant and needs `ANTHROPIC_API_KEY` in Vercel.
 - `app/api/markets/route.js` serves currency rates (ECB via Frankfurter), gold (gold-api.com) and bitcoin (Coinbase), cached for 15 minutes.
 - `components/GlobeApp.jsx` holds the static markup and loads `lib/app.js` in the browser.
 - `app/globals.css` holds all styles. Colors are tokens on `:root`, and the page has a single dark theme.
@@ -50,9 +54,9 @@ Owner: Simon.  He mostly works from his phone, so keep replies short and test th
 
 ## Roadmap (owner's requests, not done yet)
 1. State, province and city names for the selected country only. Load Natural Earth admin-1 (1:10m) shapes on demand for that country, not globally.
-2. More countries with full briefings, eventually all of them.
+2. Every country now has an overview. Next: full conflict briefings (`B`) for more of the countries marked high tension or active conflict.
 3. More connections at the Notable and All tiers, such as trade disputes.
 4. Live news is done. Next: per-theme news queries in Pulse, and oil prices, which need an API key.
-5. Current population and GDP figures, for example from the World Bank API at build time.
+5. Live World Bank, IMF and Wikidata data is done.
 6. A typography and UI polish pass, once the owner decides what he wants.
 7. Supabase only if an admin editor or stored news is needed.
