@@ -59,10 +59,12 @@ export default function GlobeApp() {
       <aside className="chat" id="chat" hidden aria-label="AI assistant">
         <div className="chat-head">
           <span className="chat-title">✦ Ask about the world</span>
+          <button type="button" className="chat-x" id="chat-histbtn" aria-expanded="false">History</button>
           <button type="button" className="chat-x" id="chat-clear">New chat</button>
           <button type="button" className="chat-x" id="chat-close" aria-label="Close assistant">×</button>
         </div>
         <div className="chat-log" id="chat-log" aria-live="polite" />
+        <div className="chat-hist" id="chat-hist" hidden />
         <form className="chat-form" id="chat-form">
           <input id="chat-in" autoComplete="off" placeholder="Ask about a country, a deal, a market…" />
           <button type="submit">Send</button>

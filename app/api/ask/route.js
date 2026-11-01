@@ -4,6 +4,7 @@
 
 const MODELS = [process.env.ANTHROPIC_MODEL, 'claude-haiku-5-5', 'claude-haiku-4-5'].filter(Boolean);
 const GEMINI_MODELS = [process.env.GEMINI_MODEL, 'gemini-flash-latest', 'gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite'].filter(Boolean);
+export const maxDuration = 60;
 const hits = new Map(); // simple per-IP limit: 30 questions an hour per server instance
 
 function limited(ip) {
@@ -28,15 +29,22 @@ async function call(model, messages, withSearch) {
   return fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'content-type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(40000)
   });
 }
 
-/* Gemini: tries Google Search grounding first (for current events), then without it, across models. */
-async function askGemini(messages) {
-  let last = { error: 'The assistant couldn’t answer right now.', status: 502 };
+/* Gemini: tries Google Search grounding first (for current events), then without it, across models.
+   Every call has a time limit so a slow or stuck request can't hang the assistant. */
+async function askGemini(messages, attempts = []) {
+  const until = Date.now() + 50000;
+  let last = { error: 'The assistant couldn’t answer right now. Try again in a moment.', status: 502 };
   for (const model of GEMINI_MODELS) {
     for (const search of [true, false]) {
+      const left = until - Date.now();
+      if (left < 4000) return last;
+      const a = { model, search };
+      attempts.push(a);
       try {
         const body = {
           systemInstruction: { parts: [{ text: system() }] },
@@ -47,24 +55,44 @@ async function askGemini(messages) {
         const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
           method: 'POST',
           headers: { 'content-type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
-          body: JSON.stringify(body)
+          body: JSON.stringify(body),
+          signal: AbortSignal.timeout(Math.min(search ? 22000 : 28000, left))
         });
-        if (r.status === 400 || r.status === 403) {
-          const msg = JSON.stringify(await r.json().catch(() => ({}))).toLowerCase();
-          if (msg.includes('api key') || msg.includes('api_key')) return { error: 'The Gemini API key isn’t valid. Check GEMINI_API_KEY in Vercel.', status: 502 };
-          if (search) continue; // search grounding not allowed: retry without it
-          break; // model not available: next model
+        a.status = r.status;
+        if (!r.ok) {
+          const msg = JSON.stringify(await r.json().catch(() => ({})));
+          a.msg = msg.slice(0, 200);
+          if (/api[ _]?key/i.test(msg) && (r.status === 400 || r.status === 403)) return { error: 'The Gemini API key isn’t valid. Check GEMINI_API_KEY in Vercel.', status: 502 };
+          if (r.status === 429) last = { error: 'The free AI quota is used up for now. Try again in a minute.', status: 429 };
+          if (search) continue; // try the same model without search
+          continue; // next model
         }
-        if (r.status === 429) { last = { error: 'The free AI quota is used up for now. Try again in a minute.', status: 429 }; if (search) continue; break; }
-        if (r.status === 404) break;
-        if (!r.ok) return { error: 'The assistant hit an error. Try again shortly.', status: 502 };
         const d = await r.json();
         const text = (d?.candidates?.[0]?.content?.parts || []).filter(p => p.text && !p.thought).map(p => p.text).join('').trim();
+        a.ok = !!text;
         if (text) return { text };
-      } catch (e) { /* try the next option */ }
+      } catch (e) { a.err = e.name; }
     }
   }
   return last;
+}
+
+/* GET /api/ask?diag=1 : checks the setup without exposing any key. */
+export async function GET(req) {
+  if (new URL(req.url).searchParams.get('diag') !== '1') return Response.json({ ok: true });
+  const out = { gemini: !!process.env.GEMINI_API_KEY, anthropic: !!process.env.ANTHROPIC_API_KEY, models: GEMINI_MODELS };
+  if (out.gemini) {
+    try {
+      const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', { headers: { 'x-goog-api-key': process.env.GEMINI_API_KEY }, signal: AbortSignal.timeout(10000) });
+      const j = await r.json();
+      out.listStatus = r.status;
+      out.available = (j.models || []).map(m => m.name.replace('models/', '')).filter(n => /flash/.test(n));
+    } catch (e) { out.listErr = e.name; }
+    const t0 = Date.now(), attempts = [];
+    const g = await askGemini([{ role: 'user', content: 'Reply with just OK.' }], attempts);
+    out.test = { ms: Date.now() - t0, ok: !!g.text, error: g.error, attempts };
+  }
+  return Response.json(out);
 }
 
 export async function POST(req) {
