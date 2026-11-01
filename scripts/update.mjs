@@ -21,6 +21,7 @@ const H = 3600e3;
 const AI_URL = process.env.AI_URL, TOKEN = process.env.AI_KEY, MODEL = process.env.AI_MODEL;
 // wire services first: their headlines are the most neutral
 const PREFER = ['reuters', 'apnews', 'bbc', 'afp', 'aljazeera', 'cbc', 'theguardian', 'ft.com', 'bloomberg', 'npr'];
+const WIRE = 4; // Reuters, AP, BBC, AFP count on their own
 const rank = it => { const k = PREFER.findIndex(p => (it.host || '').includes(p)); return k < 0 ? 99 : k; };
 const UA = 'Mozilla/5.0 (compatible; FaultLinesUpdater/1.0; +https://github.com)';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -95,7 +96,7 @@ function clusters(items, name) {
   return groups.map(g => {
     const outlets = [...new Map(g.items.map(i => [i.source, i])).values()];
     return { items: g.items, outlets, key: [...g.tok].sort().slice(0, 8).join(' ') };
-  }).filter(g => g.outlets.length >= 2).sort((a, b) => b.outlets.length - a.outlets.length);
+  }).filter(g => g.outlets.length >= 2 || rank(g.outlets[0]) < WIRE).sort((a, b) => b.outlets.length - a.outlets.length);
 }
 
 /* ---------- free AI (GitHub Models) ---------- */
@@ -172,8 +173,10 @@ async function main() {
     const res = await Promise.all(part.map(c => headlines(c.iso, c.name)));
     part.forEach((c, n) => {
       const seen = new Set(state.seen[c.iso] || []);
+      let solo = 0;
       clusters(res[n], c.name).slice(0, 3).forEach(g => {
         if (seen.has(g.key) || g.items.some(i => seen.has(i.url))) return;
+        if (g.outlets.length < 2 && solo++) return; // at most one single-source wire story per country per run
         events.push({ ...g, iso: c.iso, name: c.name.split(' OR ')[0] });
       });
     });
@@ -191,8 +194,7 @@ async function main() {
     const v = ai ? ai.find(x => x.id === k) : null;
     let text = null, isAi = false;
     if (ai && v) { if (v.keep && v.text) { text = v.text.trim(); isAi = true; } }
-    else if (!ai && e.outlets.length >= 3) text = [...e.outlets].sort((a, b) => rank(a) - rank(b))[0].title;
-    if (!text && !ai) return; // without AI, a 2-outlet story waits until a third outlet confirms it
+    else if (!ai) text = [...e.outlets].sort((a, b) => rank(a) - rank(b))[0].title;
     const seen = state.seen[e.iso] || (state.seen[e.iso] = []);
     seen.push(e.key, ...e.items.map(i => i.url));
     state.seen[e.iso] = seen.slice(-120);
