@@ -271,6 +271,34 @@ button { cursor: pointer; }
 }
 .btn:hover { border-color: var(--accent); }
 
+/* water labels: italic serif, the cartographer's convention for water */
+.wlabel {
+  pointer-events: none; white-space: nowrap;
+  font-family: var(--display); font-style: italic; font-weight: 400;
+  color: rgba(126, 178, 222, 0.72); text-shadow: 0 0 4px #060b13, 0 0 8px #060b13;
+}
+.wlabel.w1 { font-size: 15px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(126, 178, 222, 0.5); }
+.wlabel.w2 { font-size: 13px; letter-spacing: 0.04em; }
+.wlabel.w3, .wlabel.w4 { font-size: 12px; letter-spacing: 0.03em; }
+.wlabel.key { color: #a9e2ff; display: flex; align-items: center; gap: 5px; }
+.wlabel.key::before { content: ""; width: 5px; height: 5px; transform: rotate(45deg); background: currentColor; flex: none; }
+
+/* detail control */
+.detailctl { display: grid; gap: 7px; }
+.dhead { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.dname { font-size: 12.5px; font-weight: 600; color: var(--fg); }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; min-width: 200px; }
+.steps button {
+  height: 30px; padding: 0; border: 0; background: none; display: flex; align-items: flex-end; justify-content: center;
+}
+.steps button span { display: block; width: 100%; border-radius: 3px; background: var(--line-strong); }
+.steps button:nth-child(1) span { height: 9px; } .steps button:nth-child(2) span { height: 13px; }
+.steps button:nth-child(3) span { height: 17px; } .steps button:nth-child(4) span { height: 21px; }
+.steps button:nth-child(5) span { height: 25px; }
+.steps button.on span { background: var(--accent); }
+.steps button:hover span { filter: brightness(1.3); }
+.lsep { height: 1px; background: var(--line); margin: 2px 0; }
+
 .err { position: fixed; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--muted); }
 
 /* ---------- Phone ---------- */

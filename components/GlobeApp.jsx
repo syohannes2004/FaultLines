@@ -53,14 +53,6 @@ export default function GlobeApp() {
               <option value="pop">Population</option>
             </select>
           </label>
-          <label className="field is-off" id="detail-field">
-            <span>Detail</span>
-            <select id="detail" defaultValue="1">
-              <option value="1">Major</option>
-              <option value="2">Notable</option>
-              <option value="3">All</option>
-            </select>
-          </label>
           <label className="field">
             <span>Find</span>
             <input id="search" list="names" placeholder="Country name" autoComplete="off" />

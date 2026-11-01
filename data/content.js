@@ -12,7 +12,7 @@ export const LINK_TYPES = {
   alliance: { label: 'Alliance / backing', color: '#8fd0ff' },
   diplomacy: { label: 'Mediation / talks', color: '#b9a3ff' }
 };
-export const DETAIL = { 1: 'Major', 2: 'Notable', 3: 'All' };
+export const DETAIL = { 1: 'Major', 2: 'Notable', 3: 'Significant', 4: 'Minor', 5: 'Everything' };
 
 export const B = {
   UKR: {
@@ -453,7 +453,7 @@ export const LINKS = [
     d: 'Egypt backs Eritrea, forming a rival camp to Ethiopia and the UAE.',
     src: [['DW News, May 2026', 'https://www.pulse.bot/defense/video/new-war-looming-in-the-horn-of-africa-dw-news-0308a1da-9e8d-4f9e-9453-ee0b63d9b67b/']] },
 
-  /* ---- Notable ---- */
+  /* ---- Notable (2) ---- */
   { a: 'ISR', b: 'LBN', type: 'conflict', tier: 2, label: 'Hezbollah front', hub: [33.1, 35.5],
     br: [['ISR', 'Lebanon border']],
     d: 'Israel and Hezbollah fought across the border during the Iran war. The April 2026 US–Iran truce was extended to Lebanon, and Israel later authorized direct talks with Beirut.',
@@ -468,19 +468,85 @@ export const LINKS = [
   { a: 'USA', b: 'CHN', type: 'dispute', tier: 2, label: 'Great-power rivalry',
     d: 'Tariffs, chip export controls, Taiwan and naval activity in the South China Sea keep relations tense.', src: [] },
 
-  /* ---- All ---- */
+  { a: 'PRK', b: 'KOR', type: 'dispute', tier: 2, label: 'Korean standoff', hub: [38.0, 127.0], both: true,
+    d: 'The 1950–53 Korean War ended in an armistice, not a peace treaty, so the two Koreas are technically still at war across the heavily fortified Demilitarized Zone. North Korea keeps expanding its nuclear and missile programs.', src: [] },
+  { a: 'CHN', b: 'PHL', type: 'dispute', tier: 2, label: 'South China Sea', hub: [15.15, 117.76],
+    d: 'China claims most of the South China Sea despite a 2016 international ruling against it. Its coast guard and navy patrol around Scarborough Shoal, and the Philippines has accused Chinese vessels of water-cannon attacks on its ships.',
+    src: [['gCaptain: China patrols around Scarborough Shoal', 'https://gcaptain.com/china-conducts-patrols-around-scarborough-shoal-in-disputed-south-china-sea/'], ['The Vibes: second water cannon attack', 'https://www.thevibes.com/articles/world/125397/philippines-accuses-china-of-second-water-cannon-attack-as-south-china-sea-tensions-escalate']] },
+  { a: 'YEM', b: 'SAU', type: 'conflict', tier: 2, label: 'Houthi attacks in the Red Sea', hub: [15.5, 41.6],
+    d: 'Yemen’s Iran-backed Houthi movement, which controls the capital Sanaa, escalated attacks on Red Sea shipping and on Saudi Arabia in 2026, threatening one of the world’s busiest trade routes.',
+    src: [['FDD Long War Journal, Aug 2026', 'https://www.fdd.org/analysis/2026/08/06/houthis-escalate-attacks-in-red-sea-and-on-saudi-arabia-riyadh-evaluates-options/']] },
+  { a: 'ARE', b: 'SDN', type: 'dispute', tier: 2, label: 'Accused of arming the RSF',
+    d: 'Sudan’s army-led government accuses the UAE of arming the RSF and has cut diplomatic ties. The UAE denies supplying the paramilitary group.',
+    src: [['The New Arab: Sudan cuts ties with the UAE', 'https://www.newarab.com/news/sudan-government-declares-uae-aggressor-state-cuts-ties'], ['Daily Maverick, May 2026', 'https://www.dailymaverick.co.za/article/2026-05-03-united-arab-emirates-accused-of-fuelling-conflict-as-genocide-fears-rise-in-sudan/']] },
+
+  /* ---- Significant (3) ---- */
+  { a: 'CHN', b: 'IND', type: 'dispute', tier: 3, label: 'Himalayan border', hub: [34.5, 78.3], both: true,
+    d: 'The two nuclear powers dispute long stretches of their Himalayan border. A 2020 clash in Ladakh’s Galwan Valley killed soldiers on both sides, and a 2024 deal pulled troops back from some friction points.', src: [] },
+  { a: 'CHN', b: 'JPN', type: 'dispute', tier: 3, label: 'Taiwan remarks and Senkaku Islands', hub: [25.75, 123.5],
+    d: 'Relations broke down after Prime Minister Sanae Takaichi suggested in November 2025 that a Chinese attack on Taiwan could draw in Japan’s military. The two also dispute the Senkaku Islands, which China calls the Diaoyu.',
+    src: [['CGTN, Mar 2026', 'https://news.cgtn.com/news/2026-03-25/China-says-rift-with-Japan-stems-from-Takaichi-s-Taiwan-remarks-1LNmmvCgpWg/share_amp.html'], ['The Star: why the feud could rage on', 'https://www.thestar.com.my/aseanplus/aseanplus-news/2026/01/02/why-the-feud-between-tokyo-and-beijing-could-rage-on-for-a-while-yet']] },
+  { a: 'THA', b: 'KHM', type: 'dispute', tier: 3, label: 'Border clashes', hub: [14.39, 104.68], both: true,
+    d: 'Deadly border fighting in 2025 ended in a US-brokered ceasefire that remains uneasy. Cambodia says Thai forces still occupy disputed land, and Thailand plans a permanent border fence.',
+    src: [['Fox News: Cambodian PM on disputed land', 'https://www.foxnews.com/politics/cambodian-pm-says-thai-forces-occupying-disputed-land-despite-trump-brokered-ceasefire'], ['Pattaya Mail: border fence', 'https://www.pattayamail.com/thailandnews/thailand-to-build-permanent-border-fence-with-cambodia-pilot-section-set-for-chanthaburi-539825']] },
+  { a: 'USA', b: 'GRL', type: 'dispute', tier: 3, label: 'US push for Greenland',
+    d: 'Trump has repeatedly said the US should control Greenland, a self-governing part of Denmark. Talks at the White House in January 2026 ended in disagreement, and Greenland’s leaders say they choose Denmark.',
+    src: [['The National, Jan 2026', 'https://www.thenationalnews.com/news/us/2026/01/14/trump-us-control-greenland-denmark'], ['Congressional Research Service, Jan 2026', 'https://www.everycrsreport.com/reports/IN12643.html']] },
+  { a: 'USA', b: 'MEX', type: 'dispute', tier: 3, label: 'Tariffs and cartels',
+    d: 'Washington has pressed Mexico with tariffs and demands to curb cartels and fentanyl. The killing of cartel leader "El Mencho" in a February 2026 Mexican operation set off cartel retaliation.',
+    src: [['ROIC: cartel crackdown and trade tensions, Feb 2026', 'https://www.roic.ai/news/us-mexico-cartel-crackdown-intensifies-as-el-mencho-killing-sparks-retaliation-and-trade-tensions-02-23-2026']] },
+
+  /* ---- Minor (4) ---- */
+  { a: 'ARM', b: 'AZE', type: 'diplomacy', tier: 4, label: 'Peace deal initialed, not yet signed',
+    d: 'After decades of conflict over Nagorno-Karabakh, which Azerbaijan retook in 2023, the two initialed a peace agreement at the White House in August 2025. It has not yet been formally signed.',
+    src: [['Armenpress: Azerbaijan expects signing in 2026', 'https://armenpress.am/en/article/1236862']] },
+  { a: 'SRB', b: 'KOS', type: 'dispute', tier: 4, label: 'Kosovo independence',
+    d: 'Serbia does not recognize Kosovo’s 2008 declaration of independence, and tensions flare in Serb-majority northern Kosovo.', src: [] },
+  { a: 'MAR', b: 'DZA', type: 'dispute', tier: 4, label: 'Western Sahara', hub: [24.5, -13.0],
+    d: 'Morocco controls most of Western Sahara, while Algeria backs the Polisario Front independence movement. Algeria cut diplomatic ties with Morocco in 2021.', src: [] },
+  { a: 'IRN', b: 'YEM', type: 'alliance', tier: 4, label: 'Backs the Houthis',
+    d: 'Iran arms and supports Yemen’s Houthi movement as part of its network of allied armed groups.', src: [] },
+  { a: 'IRN', b: 'LBN', type: 'alliance', tier: 4, label: 'Backs Hezbollah',
+    d: 'Iran is the main sponsor of Hezbollah, the Lebanese armed group and political party.', src: [] },
+  { a: 'RUS', b: 'BLR', type: 'alliance', tier: 4, label: 'Union State',
+    d: 'Belarus is Russia’s closest ally. Its territory was used to launch the 2022 invasion of Ukraine, and Russia has stationed tactical nuclear weapons there.', src: [] },
+  { a: 'USA', b: 'JPN', type: 'alliance', tier: 4, label: 'Security treaty',
+    d: 'Japan hosts the largest US military presence overseas under a mutual security treaty.', src: [] },
+  { a: 'USA', b: 'KOR', type: 'alliance', tier: 4, label: 'Security treaty',
+    d: 'About 28,500 US troops are based in South Korea under a mutual defence treaty.', src: [] },
+  { a: 'USA', b: 'PHL', type: 'alliance', tier: 4, label: 'Mutual defence treaty',
+    d: 'The US says its 1951 treaty with the Philippines covers attacks on Philippine forces in the South China Sea.', src: [] },
+  { a: 'USA', b: 'AUS', type: 'alliance', tier: 4, label: 'AUKUS and the Quad',
+    d: 'Close allies through AUKUS, a submarine and technology pact with the UK, and the Quad grouping with India and Japan.', src: [] },
+  /* ---- more Significant / Minor ---- */
   { a: 'CAN', b: 'USA', type: 'dispute', tier: 3, label: 'Trade war',
     d: 'The trade fight that began in 2025 escalated in August 2026, when the US put 50% tariffs on about US$20 billion of Canadian goods. Canada answered with counter-tariffs from September 8.',
     src: [['Osler: Section 338 tariffs and Canada’s response', 'https://www.osler.com/en/insights/updates/elbows-back-up-u-s-section-338-tariffs-canada-retaliatory-surtaxes-current-landscape/'], ['Sentisense: US imposes 50% tariffs', 'https://app.sentisense.ai/stories/us-imposes-50-percent-tariffs-on-20-billion-of-canadian-goods-canada-vows-dollar-08222026']] },
-  { a: 'PAK', b: 'IRN', type: 'diplomacy', tier: 3, label: 'Mediated the US–Iran truce',
+  { a: 'PAK', b: 'IRN', type: 'diplomacy', tier: 4, label: 'Mediated the US–Iran truce',
     d: 'Pakistan helped broker the April 2026 US–Iran ceasefire and hosted talks in Islamabad.',
     src: [['Qatar Tribune, Apr 2026', 'https://www.qatar-tribune.com/article/228074/world/us-iran-agree-two-week-truce']] },
-  { a: 'OMN', b: 'IRN', type: 'diplomacy', tier: 3, label: 'Hormuz shipping talks', hub: [26.57, 56.25],
+  { a: 'OMN', b: 'IRN', type: 'diplomacy', tier: 4, label: 'Hormuz shipping talks', hub: [26.57, 56.25],
     d: 'Oman and Iran have been negotiating a shipping route through the Strait of Hormuz, with US backing.',
     src: [['Oman Observer, Sep 2026', 'https://www.omanobserver.om/article/1194118/world/region/oman-iran-deal-on-hormuz-expected-soon-us-iran-officials']] },
-  { a: 'QAT', b: 'COD', type: 'diplomacy', tier: 3, label: 'Hosted Congo–M23 talks',
+  { a: 'QAT', b: 'COD', type: 'diplomacy', tier: 4, label: 'Hosted Congo–M23 talks',
     d: 'Qatar has hosted rounds of talks between Congo’s government and the M23 rebels in Doha.',
-    src: [['AP, Nov 2025', 'https://www.finedayradio.com/news/world-srn-news/congo-and-rwanda-backed-m23-rebels-sign-framework-for-peace-deal-but-tensions-remain']] }
+    src: [['AP, Nov 2025', 'https://www.finedayradio.com/news/world-srn-news/congo-and-rwanda-backed-m23-rebels-sign-framework-for-peace-deal-but-tensions-remain']] },
+  /* ---- Everything (5) ---- */
+  { a: 'GRC', b: 'TUR', type: 'dispute', tier: 5, label: 'Aegean and Cyprus', hub: [38.5, 25.5], both: true,
+    d: 'NATO allies with long-running disputes over Aegean airspace and waters and over divided Cyprus.', src: [] },
+  { a: 'CHN', b: 'PAK', type: 'alliance', tier: 5, label: 'All-weather partners',
+    d: 'China is Pakistan’s main arms supplier and is funding the China–Pakistan Economic Corridor.', src: [] },
+  { a: 'RUS', b: 'IND', type: 'alliance', tier: 5, label: 'Arms and oil',
+    d: 'India is a major buyer of Russian weapons and discounted Russian oil, which has strained its ties with Washington.', src: [] },
+  { a: 'TUR', b: 'AZE', type: 'alliance', tier: 5, label: '"One nation, two states"',
+    d: 'Turkey is Azerbaijan’s closest ally and supplied drones used in the Karabakh fighting.', src: [] },
+  { a: 'USA', b: 'IND', type: 'alliance', tier: 5, label: 'Quad partners',
+    d: 'Partners in the Quad with Japan and Australia, though trade disputes have strained ties.', src: [] },
+  { a: 'GBR', b: 'UKR', type: 'alliance', tier: 5, label: 'Military aid', d: 'One of Ukraine’s largest military backers.', src: [] },
+  { a: 'DEU', b: 'UKR', type: 'alliance', tier: 5, label: 'Military aid', d: 'Europe’s largest supplier of military aid to Ukraine.', src: [] },
+  { a: 'FRA', b: 'UKR', type: 'alliance', tier: 5, label: 'Military aid', d: 'A leading backer of Ukraine and of European security guarantees for it.', src: [] },
+  { a: 'POL', b: 'UKR', type: 'alliance', tier: 5, label: 'Supply hub', d: 'The main route for Western weapons and aid entering Ukraine.', src: [] },
+  { a: 'EGY', b: 'SDN', type: 'alliance', tier: 5, label: 'Backs Sudan’s army', d: 'Egypt is widely seen as supporting Sudan’s army against the RSF.', src: [] }
 ];
 
 export const HOTS = [
@@ -591,3 +657,38 @@ export const PLACES = {
     { n: 'Quneitra', lat: 33.13, lng: 35.82, lv: 2, d: 'Southern Syria, where Israel has carried out raids.' }
   ] }
 };
+
+/* Oceans, seas and straits. t: 1 always shown, 2 seas, 3 key straits and smaller seas, 4 only when zoomed in. key: strategic chokepoint. */
+export const WATERS = [
+  { n: 'Pacific Ocean', lat: 8, lng: -140, t: 1 }, { n: 'Pacific Ocean', lat: 18, lng: 165, t: 1 },
+  { n: 'Atlantic Ocean', lat: 28, lng: -42, t: 1 }, { n: 'Atlantic Ocean', lat: -22, lng: -16, t: 1 },
+  { n: 'Indian Ocean', lat: -22, lng: 78, t: 1 }, { n: 'Arctic Ocean', lat: 84, lng: 20, t: 1 },
+  { n: 'Southern Ocean', lat: -60, lng: 100, t: 1 },
+  { n: 'Mediterranean Sea', lat: 34.5, lng: 18, t: 2 }, { n: 'Red Sea', lat: 21, lng: 38.4, t: 2 },
+  { n: 'Arabian Sea', lat: 15, lng: 64, t: 2 }, { n: 'Bay of Bengal', lat: 14, lng: 88, t: 2 },
+  { n: 'South China Sea', lat: 13, lng: 114, t: 2 }, { n: 'East China Sea', lat: 29.5, lng: 126, t: 2 },
+  { n: 'Philippine Sea', lat: 20, lng: 133, t: 2 }, { n: 'Sea of Japan', lat: 40, lng: 135, t: 2 },
+  { n: 'Caribbean Sea', lat: 15, lng: -75, t: 2 }, { n: 'Gulf of Mexico', lat: 25, lng: -90, t: 2 },
+  { n: 'Black Sea', lat: 43.2, lng: 34, t: 2 }, { n: 'Caspian Sea', lat: 41.8, lng: 50.6, t: 2 },
+  { n: 'Persian Gulf', lat: 27.2, lng: 51, t: 2 }, { n: 'Baltic Sea', lat: 57.5, lng: 19.5, t: 2 },
+  { n: 'North Sea', lat: 56, lng: 3, t: 2 }, { n: 'Bering Sea', lat: 58, lng: -178, t: 2 },
+  { n: 'Coral Sea', lat: -17, lng: 155, t: 2 }, { n: 'Tasman Sea', lat: -38, lng: 160, t: 2 },
+  { n: 'Gulf of Guinea', lat: 2, lng: 3, t: 2 }, { n: 'Hudson Bay', lat: 60, lng: -85, t: 2 },
+  { n: 'Barents Sea', lat: 74, lng: 40, t: 2 },
+  { n: 'Strait of Hormuz', lat: 26.57, lng: 56.25, t: 3, key: true },
+  { n: 'Bab-el-Mandeb', lat: 12.6, lng: 43.35, t: 3, key: true },
+  { n: 'Taiwan Strait', lat: 24.3, lng: 119.6, t: 3, key: true },
+  { n: 'Strait of Malacca', lat: 3.2, lng: 100.4, t: 3, key: true },
+  { n: 'Suez Canal', lat: 30.5, lng: 32.35, t: 3, key: true },
+  { n: 'Bosporus', lat: 41.12, lng: 29.07, t: 3, key: true },
+  { n: 'Panama Canal', lat: 9.1, lng: -79.7, t: 3, key: true },
+  { n: 'Strait of Gibraltar', lat: 35.95, lng: -5.6, t: 3, key: true },
+  { n: 'Gulf of Aden', lat: 12.6, lng: 48, t: 3 }, { n: 'Aegean Sea', lat: 38.6, lng: 25, t: 3 },
+  { n: 'Adriatic Sea', lat: 43, lng: 15, t: 3 }, { n: 'Yellow Sea', lat: 35.5, lng: 123, t: 3 },
+  { n: 'Gulf of Thailand', lat: 10, lng: 102, t: 3 }, { n: 'Gulf of Oman', lat: 24.6, lng: 58.6, t: 3 },
+  { n: 'Kerch Strait', lat: 45.3, lng: 36.55, t: 4, key: true },
+  { n: 'Luzon Strait', lat: 20.6, lng: 121.2, t: 4 }, { n: 'Korea Strait', lat: 34.4, lng: 129.2, t: 4 },
+  { n: 'English Channel', lat: 50.2, lng: -1.5, t: 4 }, { n: 'Mozambique Channel', lat: -18, lng: 41, t: 4 },
+  { n: 'Drake Passage', lat: -58, lng: -65, t: 4 }, { n: 'Bering Strait', lat: 65.8, lng: -169, t: 4 },
+  { n: 'Sea of Azov', lat: 46.2, lng: 36.4, t: 4 }, { n: 'Dardanelles', lat: 40.2, lng: 26.4, t: 4 }
+];
