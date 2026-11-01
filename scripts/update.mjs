@@ -113,7 +113,16 @@ async function writeBullets(events) {
     const raw = await r.text();
     if (!r.ok) { status.model = `AI unavailable (${r.status})`; log('AI', r.status, raw.slice(0, 300)); return null; }
     let j;
-    try { j = JSON.parse(raw); } catch (e) { log('AI odd reply', r.status, r.url, JSON.stringify(raw.slice(0, 300))); throw e; }
+    try { j = JSON.parse(raw); } catch (e) {
+      log('AI odd reply', r.status, JSON.stringify(raw.slice(0, 300)), 'headers', JSON.stringify([...r.headers].slice(0, 12)));
+      // diagnostics: a tiny request and the model catalog
+      const h = { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' };
+      for (const [u, opt] of [['https://models.github.ai/catalog/models', { headers: h }],
+        ['https://models.github.ai/inference/chat/completions', { method: 'POST', headers: h, body: JSON.stringify({ model: MODEL, messages: [{ role: 'user', content: 'Say hi' }] }) }]]) {
+        try { const t = await fetch(u, { ...opt, signal: AbortSignal.timeout(30000) }); log('AI diag', u, t.status, JSON.stringify((await t.text()).slice(0, 200))); } catch (x) { log('AI diag', u, x.message); }
+      }
+      throw e;
+    }
     let txt = j.choices[0].message.content.trim().replace(/^```(?:json)?\s*|\s*```$/g, '');
     const parsed = JSON.parse(txt);
     status.model = MODEL;
