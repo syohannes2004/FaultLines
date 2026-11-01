@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write   # commit public/updates.json
-  models: read      # free GitHub Models AI
 
 concurrency:
   group: live-updates
@@ -24,7 +23,9 @@ jobs:
           node-version: 22
       - name: Gather news and write updates
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AI_URL: ${{ secrets.AI_URL }}
+          AI_KEY: ${{ secrets.AI_KEY }}
+          AI_MODEL: ${{ secrets.AI_MODEL }}
         run: node scripts/update.mjs
       - name: Publish if anything changed
         run: |

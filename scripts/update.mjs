@@ -16,15 +16,19 @@ const OUT = new URL('../public/updates.json', import.meta.url);
 const GEO = new URL('../data/countries.json', import.meta.url);
 const NOW = Date.now();
 const H = 3600e3;
-const MODEL = process.env.UPDATE_MODEL || 'openai/gpt-4.1-mini';
-const TOKEN = process.env.GITHUB_TOKEN;
+// Optional AI summaries: any OpenAI-compatible API, set as repo secrets AI_URL, AI_KEY, AI_MODEL.
+// (GitHub Models, the original free option, was retired in July 2026.) Without them, headlines are used.
+const AI_URL = process.env.AI_URL, TOKEN = process.env.AI_KEY, MODEL = process.env.AI_MODEL;
+// wire services first: their headlines are the most neutral
+const PREFER = ['reuters', 'apnews', 'bbc', 'afp', 'aljazeera', 'cbc', 'theguardian', 'ft.com', 'bloomberg', 'npr'];
+const rank = it => { const k = PREFER.findIndex(p => (it.host || '').includes(p)); return k < 0 ? 99 : k; };
 const UA = 'Mozilla/5.0 (compatible; FaultLinesUpdater/1.0; +https://github.com)';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const T0 = Date.now(), mins = () => (Date.now() - T0) / 60000;
 const NEWS_BUDGET = 9, TOTAL_BUDGET = 17; // minutes; the job is killed at 30
 const log = (...a) => console.log(`[${mins().toFixed(1)}m]`, ...a);
 const rss = { ok: 0, empty: 0, http: {}, err: 0 };
-let gdeltWait = 6000;
+let gdeltWait = 8000;
 
 const NAMES = {
   USA: 'United States', COD: 'Democratic Republic of Congo', COG: 'Republic of Congo', TZA: 'Tanzania', CAF: 'Central African Republic',
@@ -96,7 +100,7 @@ function clusters(items, name) {
 
 /* ---------- free AI (GitHub Models) ---------- */
 async function writeBullets(events) {
-  if (!TOKEN || !events.length) return null;
+  if (!AI_URL || !TOKEN || !MODEL || !events.length) return null;
   const list = events.map((e, k) => ({ id: k, country: e.name, headlines: e.outlets.slice(0, 6).map(i => `${i.title} (${i.source})`) }));
   const sys = 'You write updates for a geopolitics and world-economy website. For each event you get headlines from several news outlets about one country. ' +
     'Return JSON: {"items":[{"id":number,"keep":boolean,"text":string}]}. keep=true only for events that matter for politics, conflict, security, diplomacy, ' +
@@ -104,25 +108,16 @@ async function writeBullets(events) {
     'text: one neutral, factual sentence under 35 words, plain English, past tense, stating only what the headlines agree on. No speculation, no opinions, ' +
     'no numbers that are not in the headlines, and attribute claims ("Israel said", "the UN reported").';
   try {
-    const r = await fetch('https://models.github.ai/inference/chat/completions', {
+    const r = await fetch(AI_URL, {
       method: 'POST', signal: AbortSignal.timeout(90000),
-      headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json', Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+      headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ model: MODEL, temperature: 0.2, response_format: { type: 'json_object' },
         messages: [{ role: 'system', content: sys }, { role: 'user', content: JSON.stringify(list) }] })
     });
     const raw = await r.text();
     if (!r.ok) { status.model = `AI unavailable (${r.status})`; log('AI', r.status, raw.slice(0, 300)); return null; }
     let j;
-    try { j = JSON.parse(raw); } catch (e) {
-      log('AI odd reply', r.status, JSON.stringify(raw.slice(0, 300)), 'headers', JSON.stringify([...r.headers].slice(0, 12)));
-      // diagnostics: a tiny request and the model catalog
-      const h = { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' };
-      for (const [u, opt] of [['https://models.github.ai/catalog/models', { headers: h }],
-        ['https://models.github.ai/inference/chat/completions', { method: 'POST', headers: h, body: JSON.stringify({ model: MODEL, messages: [{ role: 'user', content: 'Say hi' }] }) }]]) {
-        try { const t = await fetch(u, { ...opt, signal: AbortSignal.timeout(30000) }); log('AI diag', u, t.status, JSON.stringify((await t.text()).slice(0, 200))); } catch (x) { log('AI diag', u, x.message); }
-      }
-      throw e;
-    }
+    try { j = JSON.parse(raw); } catch (e) { log('AI odd reply', r.status, JSON.stringify(raw.slice(0, 200))); throw e; }
     let txt = j.choices[0].message.content.trim().replace(/^```(?:json)?\s*|\s*```$/g, '');
     const parsed = JSON.parse(txt);
     status.model = MODEL;
@@ -151,7 +146,7 @@ async function gdelt(name) {
 }
 
 /* ---------- main ---------- */
-const status = { at: new Date(NOW).toISOString(), countries: 0, events: 0, added: 0, model: 'not used', gdelt: 'skipped' };
+const status = { at: new Date(NOW).toISOString(), countries: 0, events: 0, added: 0, model: 'headlines (no AI set)', gdelt: 'skipped' };
 
 async function main() {
   let state = { news: {}, auto: {}, feed: [], seen: {}, gdeltAt: 0, gdelt: {} };
@@ -196,13 +191,14 @@ async function main() {
     const v = ai ? ai.find(x => x.id === k) : null;
     let text = null, isAi = false;
     if (ai && v) { if (v.keep && v.text) { text = v.text.trim(); isAi = true; } }
-    else if (!ai && e.outlets.length >= 3) text = e.outlets[0].title;
+    else if (!ai && e.outlets.length >= 3) text = [...e.outlets].sort((a, b) => rank(a) - rank(b))[0].title;
+    if (!text && !ai) return; // without AI, a 2-outlet story waits until a third outlet confirms it
     const seen = state.seen[e.iso] || (state.seen[e.iso] = []);
     seen.push(e.key, ...e.items.map(i => i.url));
     state.seen[e.iso] = seen.slice(-120);
     if (!text) return;
     const id = (NOW.toString(36) + k).slice(-9);
-    const item = { id, at: Math.max(...e.items.map(i => i.ts)), text, ai: isAi, src: e.outlets.slice(0, 4).map(i => [i.source, i.url]) };
+    const item = { id, at: Math.max(...e.items.map(i => i.ts)), text, ai: isAi, src: [...e.outlets].sort((a, b) => rank(a) - rank(b)).slice(0, 4).map(i => [i.source, i.url]) };
     (state.news[e.iso] || (state.news[e.iso] = [])).unshift(item);
     state.feed.unshift({ iso: e.iso, id });
     status.added++;
@@ -215,19 +211,18 @@ async function main() {
   });
   state.feed = state.feed.filter(f => state.news[f.iso] && state.news[f.iso].some(n => n.id === f.id)).slice(0, 60);
 
-  // GDELT: one fifth of countries per run, so every country is checked about every 5 hours
-  // (GDELT asks for one request every 5 seconds)
+  // GDELT is slow and rate-limits shared GitHub IPs, so each run checks 12 watched countries in rotation
   {
-    const part = all.filter((c, k) => k % 5 === Math.floor(NOW / H) % 5);
+    const n0 = Math.ceil(hot.length / 12), part = hot.filter((c, k) => k % n0 === Math.floor(NOW / H) % n0);
     let n = 0, fails = 0;
     for (const c of part) {
-      if (mins() > TOTAL_BUDGET || fails >= 5) break;
+      if (mins() > TOTAL_BUDGET || fails >= 3) break;
       const g = await gdelt(c.name);
       if (g) { state.gdelt[c.iso] = { r: Math.round(g.ratio * 100) / 100, n: g.last, at: NOW }; n++; fails = 0; } else fails++;
       await sleep(gdeltWait);
     }
     if (n) state.gdeltAt = NOW;
-    status.gdelt = `checked ${n} of ${part.length} countries${fails >= 5 ? ' (GDELT not answering)' : ''}`;
+    status.gdelt = `checked ${n} of ${part.length} countries${fails >= 3 ? ' (GDELT busy, retry next run)' : ''}`;
     log('GDELT', status.gdelt);
   }
   // raise a level only when coverage spikes AND major outlets confirmed news in the last 48 h
