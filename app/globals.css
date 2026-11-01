@@ -485,6 +485,7 @@ body[data-product="pulse"] .mark {
   .legend { max-width: none; right: calc(max(16px, env(safe-area-inset-right, 0px)) + 76px); padding: 10px 12px; }
   body.sheet-open .detailctl { display: none; }
   body[data-product="pulse"] .legend ul { display: none; }
+  #metric-field > span { display: none; }
   .chat { left: 0; right: 0; width: auto; top: auto; bottom: 0; height: 72%; border-radius: 18px 18px 0 0; border-bottom: 0;
     padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 9; }
   .modes button { padding: 8px 4px; font-size: 13px; }
