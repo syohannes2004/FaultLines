@@ -1,4 +1,5 @@
-/* Cross-device chat sync. Chats are stored in Upstash Redis (free, added in Vercel → Storage), under a key
+/* Cross-device chat sync. Chats are stored in Upstash Redis (shared with the owner's capstone project's free database,
+   so every key starts with 'faultlines:'), under a key
    derived from the person's sync code. No accounts: whoever has the code can read and write those chats.
    GET  ?code=XXXX            -> { chats, deleted, at }
    PUT  { code, chats, deleted } -> merges with what's stored, returns the merged copy */
@@ -14,7 +15,7 @@ function limited(ip) {
   list.push(now); hits.set(ip, list);
   return list.length > 120;
 }
-const keyOf = code => 'chats:' + createHash('sha256').update('fault-lines:' + code.toUpperCase().replace(/[^A-Z0-9]/g, '')).digest('hex');
+const keyOf = code => 'faultlines:chats:' + createHash('sha256').update('fault-lines:' + code.toUpperCase().replace(/[^A-Z0-9]/g, '')).digest('hex');
 const validCode = c => typeof c === 'string' && c.replace(/[^A-Za-z0-9]/g, '').length >= 10 && c.length <= 40;
 
 async function redis(cmd) {
