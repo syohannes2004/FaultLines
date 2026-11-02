@@ -92,6 +92,23 @@ export async function GET(req) {
       out.listStatus = r.status;
       out.available = (j.models || []).map(m => m.name.replace('models/', '')).filter(n => /flash/.test(n));
     } catch (e) { out.listErr = e.name; }
+    if (new URL(req.url).searchParams.get('speed') === '1') {
+      const tests = [['gemini-3.8-flash', { thinkingLevel: 'low' }], ['gemini-3.8-flash', { thinkingLevel: 'minimal' }], ['gemini-3.5-flash-lite', null],
+        ['gemini-3.5-flash-lite', { thinkingLevel: 'minimal' }], ['gemini-3.1-flash-lite', null], ['gemini-2.5-flash-lite', null], ['gemini-2.5-flash', { thinkingBudget: 0 }]];
+      out.speed = await Promise.all(tests.map(async ([model, think]) => {
+        const t = Date.now();
+        try {
+          const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+            method: 'POST', headers: { 'content-type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+            body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'In two sentences, why does the Strait of Hormuz matter?' }] }], generationConfig: { maxOutputTokens: 1024, ...(think ? { thinkingConfig: think } : {}) } }),
+            signal: AbortSignal.timeout(40000)
+          });
+          const j = await r.json().catch(() => ({}));
+          return { model, think, status: r.status, ms: Date.now() - t, ok: !!j?.candidates?.[0]?.content, msg: r.ok ? '' : JSON.stringify(j).slice(0, 120) };
+        } catch (e) { return { model, think, err: e.name, ms: Date.now() - t }; }
+      }));
+      return Response.json(out);
+    }
     const t0 = Date.now(), attempts = [];
     const g = await askGemini([{ role: 'user', content: 'Reply with just OK.' }], attempts);
     out.test = { ms: Date.now() - t0, ok: !!g.text, error: g.error, attempts };
