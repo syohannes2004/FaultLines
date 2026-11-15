@@ -1,6 +1,6 @@
 /* Fault Lines content. Edit briefings, connections and map places here. */
 /* ================= DATA ================= */
-export const UPDATED = 'November 8, 2026';
+export const UPDATED = 'November 15, 2026';
 export const LEVELS = {
   3: { label: 'Active conflict', color: '#ef5350' },
   2: { label: 'High tension', color: '#f0913f' },
@@ -24,14 +24,16 @@ export const B = {
   UKR: {
     leader: 'Volodymyr Zelensky', role: 'President',
     gov: 'Semi-presidential republic, under martial law since 2022', lv: 3,
-    summary: "Russia's full-scale invasion, launched on February 24, 2022, is heading into its fifth winter. The front line has barely moved in 2026, while drone and missile strikes on cities and the power grid continue. Peace talks restarted in October, and US-mediated three-way talks are set for Abu Dhabi on November 10–11.",
+    summary: "Russia's full-scale invasion, launched on February 24, 2022, is heading into its fifth winter. The front line has barely moved in 2026, while drone and missile strikes on cities and the power grid continue. US-mediated three-way talks in Abu Dhabi on November 10–11, the first in nine months, ended without a breakthrough but agreed a large prisoner exchange.",
     issues: [
       { t: 'Russia–Ukraine war', s: 'Active', d: 'Russia holds Crimea, annexed in 2014, and large parts of Donetsk, Luhansk, Zaporizhzhia and Kherson. The Institute for the Study of War estimates Russia has gained only about 73 km² net since January 2026 and has lost a similar amount since September.' },
-      { t: 'Ceasefire talks', s: 'Resuming', d: 'US-brokered three-way talks in Abu Dhabi in February 2026 produced little, then froze once the Iran war began. In October, Zelensky said Ukraine would freeze the war along the current line of contact but would not give up more territory. New talks in Abu Dhabi on November 10–11 will be led by Rustem Umerov for Ukraine and Vladimir Medinsky for Russia, and France’s foreign minister says Europeans will take part.' },
-      { t: 'Energy war', s: 'Ongoing', d: 'Russian strikes on the grid force scheduled blackouts across Ukraine, and Kyiv says it will keep hitting Russian oil refineries with long-range drones.' }
+      { t: 'Ceasefire talks', s: 'In talks', d: 'US-brokered three-way talks in Abu Dhabi in February 2026 produced little, then froze once the Iran war began. In October, Zelensky said Ukraine would freeze the war along the current line of contact but would not give up more territory. The November 10–11 round in Abu Dhabi, led by Rustem Umerov for Ukraine, Vladimir Medinsky for Russia and US envoys Jared Kushner and Steve Witkoff, agreed a large prisoner swap. Kushner called territory the hardest issue and says Russia has agreed to let Europe join the next round. On November 14 Zelensky said US negotiators had asked whether Ukraine would leave the parts of Donbas it still holds in return for NATO membership. He says he will not cede territory.' },
+      { t: 'Energy war', s: 'Ongoing', d: 'Russian strikes on the grid force scheduled blackouts across Ukraine. The power company DTEK said strikes on November 8 left about 850,000 people without electricity in Dnipropetrovsk and Kharkiv regions. Kyiv says it will keep hitting Russian oil refineries with long-range drones.' }
     ],
     timeline: [
-      ['Nov 10–11, 2026', 'US–Russia–Ukraine talks scheduled in Abu Dhabi.'],
+      ['Nov 14, 2026', 'Zelensky says the US floated Ukraine leaving Donbas in return for NATO membership; he rejects ceding land.'],
+      ['Nov 10–11, 2026', 'US–Russia–Ukraine talks in Abu Dhabi end with a deal on a large prisoner exchange.'],
+      ['Nov 8, 2026', 'Russian strikes cut power to about 850,000 people in Dnipropetrovsk and Kharkiv regions.'],
       ['Nov 6–7, 2026', 'Russia fires 36 ballistic missiles and 172 drones, mostly at Kyiv, cutting power, water and heat in parts of the city.'],
       ['Nov 1, 2026', 'A local truce around Oleshky in Kherson region ends.'],
       ['Oct 21, 2026', 'Zelensky says Ukraine is ready to freeze fighting along the current front line.'],
@@ -39,7 +41,9 @@ export const B = {
       ['Feb 2026', 'US, Russian and Ukrainian negotiators meet in Abu Dhabi without a breakthrough.']
     ],
     sources: [
-      ['Kyiv Independent: Russia names delegation for Abu Dhabi talks', 'https://kyivindependent.com/russia-to-send-senior-diplomats-military-officials-to-upcoming-peace-talks-in-abu-dhabi/'],
+      ['Al Jazeera: US suggested Ukraine cede parts of Donbas (Nov 14)', 'https://www.aljazeera.com/news/2026/11/14/us-suggested-ukraine-cede-parts-of-donbas-to-russia-to-become-part-of-nato'],
+      ['Al Jazeera: Abu Dhabi talks end with prisoner exchange deal (Nov 11)', 'https://www.aljazeera.com/news/2026/11/11/russia-ukraine-talks-in-abu-dhabi-end-with-prisoner-exchange-agreement'],
+      ['Al Jazeera: strikes leave hundreds of thousands without power (Nov 8)', 'https://www.aljazeera.com/news/2026/11/8/russian-strikes-on-ukraine-leave-hundreds-of-thousands-without-electricity'],
       ['Kyiv Independent: ballistic missiles slam Kyiv (Nov 7)', 'https://kyivindependent.com/russian-ballistic-missiles-slam-kyiv-after-zelensky-warns-of-mass-attack/'],
       ['Euronews: Europeans to join Abu Dhabi talks', 'https://www.euronews.com/2026/11/08/europeans-to-join-russia-ukraine-talks-in-abu-dhabi-says-french-fm-barrot'],
       ['ISW: Russian Offensive Campaign Assessment, Oct 21, 2026', 'https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-october-21-2026'],
@@ -54,16 +58,20 @@ export const B = {
     issues: [
       { t: 'War in Ukraine', s: 'Active', d: 'Russian forces keep up slow, costly assaults along a front of roughly 1,200 km. In October 2026 the Kremlin rejected a freeze along current lines, saying Russia needs peace rather than a ceasefire.' },
       { t: 'Sanctions and NATO', s: 'Ongoing', d: 'Western sanctions on energy, banking and technology remain in place, and NATO states on Russia’s border continue to build up their forces.' },
-      { t: 'Partners', s: 'Ongoing', d: 'China is Russia’s main economic lifeline. North Korea has supplied troops and munitions, and Iran has supplied drones. Putin hosted Syria’s new leader in Moscow in January 2026.' }
+      { t: 'Partners', s: 'Ongoing', d: 'China is Russia’s main economic lifeline. North Korea has supplied troops and munitions, and Iran has supplied drones. Putin hosted Syria’s new leader in Moscow in January 2026. Trump says he expects a first three-way meeting with Putin and Xi at the APEC summit in Shenzhen on November 18–19, and the White House says nuclear arms cuts would be the focus.' }
     ],
     timeline: [
-      ['Nov 10–11, 2026', 'Talks with the US and Ukraine in Abu Dhabi; Putin aide Vladimir Medinsky leads Russia’s team.'],
+      ['Nov 11, 2026', 'Kremlin says Armenia has lost its voting rights in the Russia-led CSTO alliance.'],
+      ['Nov 10–11, 2026', 'Talks with the US and Ukraine in Abu Dhabi, led for Russia by Vladimir Medinsky, agree a large prisoner swap.'],
       ['Nov 6, 2026', 'EU foreign policy chief Kaja Kallas says Putin “does not have a veto over European security” after Trump predicts a “very big” deal.'],
       ['Oct 21, 2026', 'Kremlin dismisses Ukrainian and European ceasefire proposals as insufficient.'],
       ['May 9–11, 2026', 'Three-day truce around Victory Day; both sides report violations.'],
       ['Jan 28, 2026', 'Putin hosts Syrian interim president Ahmed al-Sharaa in Moscow.']
     ],
     sources: [
+      ['Al Jazeera: Abu Dhabi talks end with prisoner exchange deal (Nov 11)', 'https://www.aljazeera.com/news/2026/11/11/russia-ukraine-talks-in-abu-dhabi-end-with-prisoner-exchange-agreement'],
+      ['Business Today: Trump, Xi, Putin set for talks at APEC', 'https://www.businesstoday.in/world/story/trump-xi-putin-set-for-unprecedented-trilateral-talks-at-apec-summit-in-shenzhen-567494-2026-11-14'],
+      ['OC Media: Armenia stripped of CSTO voting rights', 'https://oc-media.org/armenia-stripped-of-voting-rights-in-russia-led-csto-as-moscow-relations-continue-to-deteriorate/'],
       ['ISW: Russian Offensive Campaign Assessment, Oct 21, 2026', 'https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-october-21-2026'],
       ['Defense News: Ukraine and Russia fight on despite ceasefire', 'https://www.defensenews.com/news/pentagon-congress/2026/05/11/ukraine-and-russia-fight-on-despite-us-mediated-ceasefire/']
     ]
@@ -73,11 +81,13 @@ export const B = {
     gov: 'Parliamentary democracy', lv: 3,
     summary: 'Israel voted on October 27, 2026 in its first election since the October 7, 2023 Hamas attack. Neither bloc won a majority, but 67 of 120 lawmakers, including Arab-led parties, recommended former army chief Gadi Eisenkot, and President Herzog gave him the first chance to form a government. Netanyahu stays in office until a new coalition is sworn in. The country is also managing a fragile Gaza ceasefire and the aftermath of its 2026 war with Iran.',
     issues: [
-      { t: 'Election and coalition', s: 'Eisenkot tasked', d: 'Eisenkot’s four-party alliance won 48 seats, Netanyahu’s right-wing and religious bloc 53, and Arab-led parties a record 19. Eisenkot has 28 days, with a possible 14-day extension, to build a coalition. Netanyahu says a government “dependent on Islamists” would dismantle Israel from within, and is calling for a national unity government instead.' },
-      { t: 'Gaza', s: 'Fragile truce', d: 'A ceasefire has held shakily since October 10, 2025 under Trump’s 20-point plan. The hostages were returned, but Hamas disarmament has stalled, and both sides accuse each other of violations as Israeli strikes continue.' },
+      { t: 'Election and coalition', s: 'Coalition talks', d: 'Eisenkot’s four-party alliance won 48 seats, Netanyahu’s right-wing and religious bloc 53, and Arab-led parties a record 19. Eisenkot has until December 6, extendable to December 20, to build a coalition. Netanyahu says a government “dependent on Islamists” would dismantle Israel from within, and is calling for a national unity government instead. The two met on November 12, but Eisenkot calls the unity offer a “bluff” and rejects sharing the premiership, and the ultra-Orthodox UTJ party remains far from agreement with him over military draft exemptions.' },
+      { t: 'Gaza', s: 'Fragile truce', d: 'A ceasefire has held shakily since October 10, 2025 under Trump’s 20-point plan. The hostages were returned, but Hamas disarmament has stalled, and both sides accuse each other of violations as Israeli strikes continue. On November 14 Israel said it killed Samir Abu Younis, Hamas’s Rafah Brigade commander, and Hamas confirmed his death. Axios reported that Trump asked Netanyahu after the election to carry out the Gaza plan whoever leads the next government.' },
       { t: 'Iran war', s: 'Paused', d: 'Israel and the US began striking Iran on February 28, 2026, killing Supreme Leader Ali Khamenei. Iran fired missiles at Israel during the war. The April truce between the US and Iran also covered Lebanon.' }
     ],
     timeline: [
+      ['Nov 14, 2026', 'Israel kills Hamas’s Rafah commander Samir Abu Younis in Khan Younis.'],
+      ['Nov 12, 2026', 'Eisenkot and Netanyahu meet over a possible unity government.'],
       ['Nov 7–8, 2026', 'Herzog picks Eisenkot to form the next government.'],
       ['Nov 4–5, 2026', '67 lawmakers recommend Eisenkot, 46 Netanyahu.'],
       ['Oct 27, 2026', 'General election; no bloc wins a majority.'],
@@ -87,6 +97,9 @@ export const B = {
       ['Oct 10, 2025', 'Gaza ceasefire takes effect.']
     ],
     sources: [
+      ['Al Jazeera: Can Netanyahu and Eisenkot form a unity government? (Nov 15)', 'https://www.aljazeera.com/news/2026/11/15/can-netanyahu-and-eisenkot-form-a-unity-government-in-israel'],
+      ['Jerusalem Post: Rafah Brigade commander killed (Nov 14)', 'https://www.jpost.com/israel-news/defense-news/article-914887'],
+      ['Arab News/Axios: Trump asked Netanyahu to move on Gaza plan', 'https://www.arabnews.pk/middle-east/trump-asked-netanyahu-to-move-on-gaza-peace-plan-in-post-election-call-axios-3006516'],
       ['Al Jazeera: Herzog picks Eisenkot over Netanyahu (Nov 7)', 'https://www.aljazeera.com/news/2026/11/7/israels-president-picks-eisenkot-over-netanyahu-to-form-next-government'],
       ['Ynet: coalition recommendations', 'https://ynetnews.com/article/rydawnytgl'],
       ['Ground News: Israel votes in first election since Oct 7', 'https://ground.news/article/704bcf86-81ff-4d81-ac14-a8f01411ffb1'],
@@ -101,10 +114,12 @@ export const B = {
     summary: 'Gaza is in a fragile ceasefire after a war that began in October 2023, killed tens of thousands and displaced almost the entire population. Reconstruction and Hamas disarmament under the US-led Board of Peace have moved slowly.',
     issues: [
       { t: 'Board of Peace', s: 'Stalled', d: 'The board, chaired by Trump and authorized by the UN Security Council through 2027, oversees Gaza alongside a committee of Palestinian technocrats. Its May 2026 report to the UN named Hamas as the main obstacle to phase two. One analysis in June estimated Hamas still controlled about half of Gaza.' },
-      { t: 'Daily violence', s: 'Ongoing', d: 'Israeli strikes continue despite the truce, and Israel and Hamas regularly accuse each other of violations. Gaza’s Health Ministry says at least 1,593 people have been killed since the ceasefire began. More than 1.6 million people live in tents or shelters, and heavy rain flooded camps across the Strip on November 7.' },
+      { t: 'Daily violence', s: 'Ongoing', d: 'Israeli strikes continue despite the truce, and Israel and Hamas regularly accuse each other of violations. Gaza’s Health Ministry says at least 1,593 people have been killed since the ceasefire began. More than 1.6 million people live in tents or shelters, and heavy rain flooded about 70,000 tents on November 7, according to Gaza’s Government Media Office. On November 12 an Israeli strike on Nasser Medical Complex in Khan Younis killed at least six people, including a surgeon; the Israeli military says it targeted a Hamas commander. On November 14 the EU urged Israel to allow “immediate, unimpeded” flood aid, which Israel’s aid body COGAT says diverts attention from Hamas’s responsibility.' },
       { t: 'Palestinian elections', s: 'Planned', d: 'Abbas, in office since 2005, has set presidential and legislative elections for November 2027.' }
     ],
     timeline: [
+      ['Nov 14, 2026', 'EU demands Israel allow immediate, unimpeded flood aid into Gaza.'],
+      ['Nov 12, 2026', 'Israeli strike on Nasser Medical Complex in Khan Younis kills at least six.'],
       ['Nov 7, 2026', 'Heavy rain floods tents of displaced families; the UN says shelter supplies cover only 18% of need.'],
       ['Jul 8, 2026', 'Board of Peace announces a civilian "pilot zone" near Rafah.'],
       ['May 2026', 'Board of Peace reports to the UN that phase two is stuck.'],
@@ -112,6 +127,8 @@ export const B = {
       ['Oct 10, 2025', 'Ceasefire takes effect.']
     ],
     sources: [
+      ['Times of Israel: EU demands flood aid access (Nov 14)', 'https://www.timesofisrael.com/liveblog_entry/eu-demands-israel-grant-immediate-unimpeded-flood-aid-to-gaza/'],
+      ['Al Jazeera: rains flood thousands of tents in Gaza (Nov 7)', 'https://www.aljazeera.com/news/2026/11/7/rains-flood-thousands-of-tents-in-gaza'],
       ['Al Jazeera: Israeli forces kill four in Gaza (Nov 3)', 'https://www.aljazeera.com/news/2026/11/3/israeli-forces-kill-four-in-gaza-as-fifth-palestinian-dies-of-wounds'],
       ['FDD: Gaza ceasefire and NCAG tracker', 'https://www.fdd.org/topic/national-committee-for-the-administration-of-gaza-2/'],
       ['RANE: What to make of Trump’s Board of Peace', 'https://worldview.ranenetwork.com/content/analysis/2026-01-23/what-to-make-of-trump-s-board-of-peace'],
@@ -122,13 +139,17 @@ export const B = {
     leader: 'Ayatollah Mojtaba Khamenei', role: 'Supreme Leader since March 2026',
     second: ['President', 'Masoud Pezeshkian'],
     gov: 'Islamic republic; the Supreme Leader holds final authority', lv: 3,
-    summary: 'Iran fought a war with the United States and Israel in 2026. Strikes that began on February 28 killed Supreme Leader Ali Khamenei, and his son Mojtaba was named successor on March 9. Control of the Strait of Hormuz became Iran’s main leverage. A US naval blockade of Iranian ports has been back in place since July, and in November the US carried out new limited strikes while Qatar mediates.',
+    summary: 'Iran fought a war with the United States and Israel in 2026. Strikes that began on February 28 killed Supreme Leader Ali Khamenei, and his son Mojtaba was named successor on March 9. Control of the Strait of Hormuz became Iran’s main leverage. A US naval blockade of Iranian ports has been back in place since July, and in early November the US carried out new limited strikes. Trump then said he would hold off on more for now at the request of Gulf states, but Iran’s Revolutionary Guards have since launched drones at US forces in Bahrain.',
     issues: [
-      { t: 'War with the US and Israel', s: 'Limited strikes', d: 'A two-week ceasefire on April 8, brokered with Pakistan’s help, temporarily reopened Hormuz. An interim agreement in mid-June lifted the US naval blockade, but clashes in July led Trump to declare the ceasefire over and the blockade returned. In early November the US struck air defences on Qeshm Island, which Trump called minor and “not a war”, and on November 7 launched Task Force Iron Gate to choke Iran’s land and Caspian trade. Iran’s Revolutionary Guards say Iran has lifted its self-imposed 2,000 km missile range limit. Iran is reviewing Qatari proposals.' },
-      { t: 'Strait of Hormuz', s: 'Restricted', d: 'About a fifth of the world’s oil normally passes through the strait. Iran has kept it largely closed to most traffic, but an Iranian MP said on November 6 that ships from India, China, Iraq and Qatar pass freely, with Indian and Chinese ships paying fees. Iran offers to reopen it if the US meets seven conditions, including ending the blockade and lifting sanctions.' },
+      { t: 'War with the US and Israel', s: 'Limited strikes', d: 'A two-week ceasefire on April 8, brokered with Pakistan’s help, temporarily reopened Hormuz. An interim agreement in mid-June lifted the US naval blockade, but clashes in July led Trump to declare the ceasefire over and the blockade returned. In early November the US struck air defences on Qeshm Island, which Trump called minor and “not a war”, and on November 7 launched Task Force Iron Gate to choke Iran’s land and Caspian trade. Iran’s Revolutionary Guards say Iran has lifted its self-imposed 2,000 km missile range limit. On November 9 Trump said he would hold off on new strikes “for the time being” at the request of Qatar, Saudi Arabia, the UAE, Bahrain and Kuwait, and on November 12 he said “we don’t need a deal with Iran.” The US military says it shot down two Guards drones aimed at Bahrain on November 13 and called the Guards’ claim of a destroyed radar false. Bahrain says it downed more drones on November 15, after the Guards said they targeted a US radar there.' },
+      { t: 'Strait of Hormuz', s: 'Restricted', d: 'About a fifth of the world’s oil normally passes through the strait. Iran has kept it largely closed to most traffic, but an Iranian MP said on November 6 that ships from India, China, Iraq and Qatar pass freely, with Indian and Chinese ships paying fees. Iran offers to reopen it if the US meets seven conditions, including ending the blockade and lifting sanctions. On November 14 Iranian state media said three tankers caught fire after hitting mines in the strait. Reuters could not verify the claim.' },
       { t: 'Crackdown at home', s: 'Ongoing', d: 'Mass protests in early 2026 were met with a deadly crackdown. The rights group HRANA said it had confirmed more than 6,500 protesters killed. On November 8 Iran executed three men arrested over the January protests in Karaj.' }
     ],
     timeline: [
+      ['Nov 15, 2026', 'Revolutionary Guards say they targeted a US radar in Bahrain; Bahrain says it downed the drones.'],
+      ['Nov 14, 2026', 'Iranian state media say three tankers hit mines in Hormuz (unverified).'],
+      ['Nov 13, 2026', 'US says it shot down two Iranian drones aimed at Bahrain.'],
+      ['Nov 9, 2026', 'Trump says he will hold off on new strikes for now at Gulf states’ request.'],
       ['Nov 8, 2026', 'Three men executed over the January protests.'],
       ['Nov 7, 2026', 'US launches Task Force Iron Gate against Iran’s land trade; new blasts reported on Qeshm and in Bandar Abbas.'],
       ['Nov 2, 2026', 'US strikes an air-defence site on Qeshm Island.'],
@@ -140,6 +161,9 @@ export const B = {
       ['Feb 28, 2026', 'US–Israeli strikes kill Ali Khamenei.']
     ],
     sources: [
+      ['The Telegraph via Yahoo: Iran attacks US military in Bahrain (Nov 15)', 'https://www.yahoo.com/news/world/articles/iran-attacks-us-military-bahrain-144206998.html'],
+      ['Al-Monitor/Reuters: Iran says three tankers hit mines (Nov 14)', 'https://www.al-monitor.com/originals/2026/11/irans-navy-says-three-tankers-fire-after-hitting-mines-hormuz'],
+      ['Al-Monitor/Reuters: Trump to hold off on fresh Iran strikes (Nov 9)', 'https://al-monitor.com/originals/2026/11/trump-says-he-will-hold-fresh-iran-strikes-now'],
       ['Al Jazeera: US task force targets Iran’s land supply routes (Nov 8)', 'https://www.aljazeera.com/news/2026/11/8/us-launches-task-force-to-disrupt-irans-land-based-supply-routes'],
       ['Stars and Stripes: US strikes Qeshm Island (Nov 3)', 'https://www.stripes.com/theaters/middle_east/2026-11-03/us-strikes-iran-qeshm-island-hormuz-23348317.html'],
       ['Al Jazeera: why Iran exempts India, China, Qatar, Iraq', 'https://www.aljazeera.com/news/2026/11/6/why-is-iran-exempting-india-china-qatar-iraq-from-hormuz-restrictions'],
@@ -157,12 +181,14 @@ export const B = {
     gov: 'Federal presidential republic', lv: 2,
     summary: 'The US is directly involved in more of 2026’s flashpoints than any other country. It fought a war with Iran, removed Venezuela’s leader by force, and is brokering talks on Ukraine, Gaza and eastern Congo. Democrats won control of both chambers of Congress in the November 3 midterms, which takes effect in January.',
     issues: [
-      { t: 'Iran', s: 'Limited strikes', d: 'US and Israeli strikes began on February 28, 2026. An interim deal in June lifted the US naval blockade, but clashes resumed in July and the blockade returned. In November the US struck Iranian air defences again and set up a task force to restrict Iran’s land trade, while Qatar mediates.' },
+      { t: 'Iran', s: 'Limited strikes', d: 'US and Israeli strikes began on February 28, 2026. An interim deal in June lifted the US naval blockade, but clashes resumed in July and the blockade returned. In November the US struck Iranian air defences again and set up a task force to restrict Iran’s land trade. On November 9 Trump said he would hold off on new strikes for now, but Iran has since fired drones at US forces in Bahrain.' },
       { t: 'Venezuela', s: 'Ongoing', d: 'US forces captured Nicolás Maduro in Caracas on January 3, 2026, and he is held in New York. Washington now deals with acting president Delcy Rodríguez and has moved to take control of Venezuela’s oil.' },
       { t: 'Peace brokering', s: 'Ongoing', d: 'Trump chairs Gaza’s Board of Peace, is pushing for a Russia–Ukraine deal by the end of 2026, and brokered the Congo–Rwanda agreement signed in Washington in December 2025.' },
       { t: 'China and Taiwan', s: 'Tense', d: 'A record US$11.1 billion arms package for Taiwan in December 2025 was followed by China’s largest drills yet around the island.' }
     ],
     timeline: [
+      ['Nov 12, 2026', 'Trump threatens Mexico with “doubled tariffs” over a migrant caravan, and says he wants to “get Cuba done” before leaving office.'],
+      ['Nov 9, 2026', 'Trump says he will hold off on new Iran strikes for now.'],
       ['Nov 6, 2026', 'Trump names Stephen Miller chief of staff, replacing Susie Wiles from November 9.'],
       ['Nov 3, 2026', 'Midterms: Democrats win the House and Senate.'],
       ['Oct 20, 2026', 'US envoy joins Ukraine talks in Oslo.'],
@@ -172,6 +198,8 @@ export const B = {
       ['Jan 3, 2026', 'US raid captures Maduro.']
     ],
     sources: [
+      ['TPR: Trump threatens to double Mexico tariffs (Nov 12)', 'https://www.tpr.org/border-immigration/2026-11-12/trump-threatens-to-double-mexico-tariffs-as-migrants-head-north'],
+      ['Al Jazeera: Trump moots toppling Cuba’s government (Nov 13)', 'https://www.aljazeera.com/news/2026/11/13/trump-moots-toppling-cuba-authorities-before-leaving-office'],
       ['Philadelphia Inquirer: Who is Delcy Rodríguez?', 'https://www.inquirer.com/news/nation-world/delcy-rodriguez-venezuela-interm-president-20260105.html'],
       ['CBS News: midterm results and Miller appointment', 'https://www.cbsnews.com/live-updates/midterm-election-results-2026-democrats-house-senate-trump/'],
       ['GPB/NPR: Rodríguez at the UN (Sep 2026)', 'https://www.gpb.org/news/2026/09/24/venezuelas-acting-leader-promises-elections-at-the-right-moment'],
@@ -189,6 +217,7 @@ export const B = {
       { t: 'Foreign backing', s: 'Contested', d: 'Both sides draw on outside support, and UN Secretary-General Guterres has called for an end to foreign military backing of the warring parties. Sudan accuses Ethiopia of letting the RSF launch drones from its territory, which Ethiopia denies. In early November the two expelled each other’s consular staff.' }
     ],
     timeline: [
+      ['Nov 8, 2026', 'Army detains ICC-wanted former ruling-party chief Ahmed Haroun, his lawyers say.'],
       ['Nov 3–4, 2026', 'Ethiopia closes Sudan’s consulate in Asosa; Sudan shuts Ethiopia’s in Gadarif.'],
       ['Aug 14, 2026', 'Heavy fighting southwest and west of El Obeid.'],
       ['Jul 27, 2026', 'Hemedti urges his fighters on after the army retakes the highway.'],
@@ -197,6 +226,7 @@ export const B = {
       ['Apr 15, 2023', 'War breaks out in Khartoum.']
     ],
     sources: [
+      ['AP via Click2Houston: army detains Ahmed Haroun (Nov 8)', 'https://www.click2houston.com/news/world/2026/11/08/sudans-military-again-detains-international-criminal-court-fugitive-haroun-lawyers-say/'],
       ['Al Jazeera: Sudan and Ethiopia order tit-for-tat expulsions', 'https://www.aljazeera.com/news/2026/11/4/sudan-ethiopia-order-tit-for-tat-diplomatic-expulsions'],
       ['The National: RSF captures El Fasher garrison', 'https://www.thenationalnews.com/news/mena/2025/10/26/sudans-rsf-says-its-fighters-have-captured-army-garrison-in-city-of-el-fashir'],
       ['EWN/AFP: RSF leader "unleashes" fighters (Jul 2026)', 'https://www.ewn.co.za/2026/07/28/sudan-rsf-leader-unleashes-fighters-after-army-gains-in-kordofan'],
@@ -209,12 +239,14 @@ export const B = {
     gov: 'Federal parliamentary republic', lv: 3,
     summary: 'War has returned to Tigray. A TPLF-led offensive in September 2026 reignited the conflict that killed hundreds of thousands in 2020–22, and federal forces have since retaken large parts of the region, including the capital Mekelle. Ethiopia has cut ties with Eritrea, which it accuses of backing the rebels.',
     issues: [
-      { t: 'Tigray', s: 'Active', d: 'The 2020–22 Tigray War ended with the Pretoria agreement, but the TPLF was banned as a party in 2025 and tensions grew. On October 16, 2026, Abiy named a six-month caretaker government for the region and promised elections. About 750,000 Tigrayans were still displaced even before the new fighting.' },
+      { t: 'Tigray', s: 'Active', d: 'The 2020–22 Tigray War ended with the Pretoria agreement, but the TPLF was banned as a party in 2025 and tensions grew. On October 16, 2026, Abiy named a six-month caretaker government for the region and promised elections. About 750,000 Tigrayans were still displaced even before the new fighting. Federal forces took Sheraro near the Eritrean border on November 3, and conflict trackers report clashes with Tigrayan forces at Rama on November 7 and around Badme on the border on November 9.' },
       { t: 'Eritrea and the Red Sea', s: 'High tension', d: 'Abiy calls sea access an existential need for landlocked Ethiopia, which Eritrea reads as a threat to its ports. Addis Ababa also accuses Egypt and Sudan of supporting the rebels. All three deny it. Sudan in turn accuses Ethiopia of hosting RSF drone launches, and in November both closed consulates in tit-for-tat expulsions.' },
       { t: 'Amhara insurgency', s: 'Ongoing', d: 'Fano militias have fought federal forces in Amhara since 2023. Voting did not take place in Tigray or in parts of Amhara in the June election.' },
       { t: 'June 2026 election', s: 'Held', d: 'Abiy’s Prosperity Party won a large parliamentary majority, reported at 438 seats.' }
     ],
     timeline: [
+      ['Nov 9, 2026', 'Conflict trackers report clashes around Badme on the Eritrean border.'],
+      ['Nov 7, 2026', 'Clashes with Tigrayan forces at Rama; interim authorities arrest at least seven former TPLF officials.'],
       ['Nov 3–4, 2026', 'Ethiopia expels six Sudanese consular staff; Sudan responds in kind.'],
       ['Oct 18, 2026', 'Clashes between Somali and Oromo communities in Moyale begin; local officials say about 50,000 have fled into Kenya.'],
       ['Oct 16, 2026', 'Abiy names a caretaker government for Tigray.'],
@@ -223,6 +255,7 @@ export const B = {
       ['Nov 2022', 'Pretoria agreement ends the first Tigray war.']
     ],
     sources: [
+      ['Critical Threats: Ethiopia war security review (Nov 10)', 'https://www.criticalthreats.org/briefs/ethiopia-war-security-review/november-10-2026'],
       ['Africanews: Ethiopia clashes drive thousands into Kenya', 'https://www.africanews.com/2026/11/05/fighting-wont-stop-ethiopia-clashes-drive-thousands-into-kenya/'],
       ['Daily Maverick/Reuters: Abiy names new Tigray government', 'https://www.dailymaverick.co.za/article/2026-10-16-ethiopias-abiy-names-new-tigray-government-wants-polls-in-six-months/'],
       ['Chatham House: Ethiopia needs more than an election', 'https://www.chathamhouse.org/2026/05/ethiopia-needs-more-election-calm-internal-and-regional-conflict'],
@@ -256,6 +289,7 @@ export const B = {
       { t: 'Minerals', s: 'Ongoing', d: 'Congo’s mineral wealth fuels the conflict, and critics say the US deal is tied to American access to those resources. Separately, the Islamic State-linked ADF killed at least 33 civilians near Beni in early November, in an area hit by an Ebola outbreak that has passed 10,000 cases.' }
     ],
     timeline: [
+      ['Nov 14, 2026', 'Congo drops its candidate for Francophonie secretary-general to back Romania’s Dacian Cioloș against Rwanda’s Louise Mushikiwabo, and threatens to quit the bloc if she wins.'],
       ['Nov 5, 2026', 'ADF raid on Cantine-Aloya near Beni kills at least 33; Ebola patients flee a torched health post.'],
       ['Apr 19, 2026', 'Government and M23 agree to ease aid and release prisoners.'],
       ['Feb 2026', 'Congo agrees to a ceasefire with M23.'],
@@ -263,6 +297,7 @@ export const B = {
       ['Jan–Feb 2025', 'M23 captures Goma and Bukavu.']
     ],
     sources: [
+      ['Al Jazeera: Francophone summit opens amid Rwanda–DR Congo rift (Nov 15)', 'https://www.aljazeera.com/news/2026/11/15/francophone-summit-opens-in-cambodia-amid-rwanda-dr-congo-rift'],
       ['Reuters via TimesLIVE: ADF raid forces Ebola patients to flee', 'https://www.timeslive.co.za/news/world/2026-11-08-islamist-militants-force-ebola-patients-to-flee-in-deadly-drc-raid/'],
       ['The Standard/AFP: agreement on aid and prisoners', 'https://www.standardmedia.co.ke/sports/amp/africa/2001545770/dr-congo-m23-armed-group-agree-to-ease-aid-free-prisoners'],
       ['NPR: Congo and Rwanda sign deal as fighting rages', 'https://www.wusf.org/2025-12-04/congo-and-rwanda-to-sign-symbolic-peace-deal-in-washington-as-fighting-rages'],
@@ -289,14 +324,18 @@ export const B = {
     summary: 'China claims Taiwan and has stepped up military pressure on the island, while managing a long rivalry with the US over trade, technology and the western Pacific.',
     issues: [
       { t: 'Taiwan', s: 'High tension', d: 'In late December 2025 China held its largest drills yet by area and the closest yet to Taiwan, firing rockets toward the island. Large drills paused when the Iran war began and resumed in March 2026.' },
-      { t: 'Rivalry with the US', s: 'Ongoing', d: 'Tariffs, chip export controls and naval activity in the South China Sea keep relations tense.' },
+      { t: 'Rivalry with the US', s: 'Ongoing', d: 'Tariffs, chip export controls and naval activity in the South China Sea keep relations tense. A trade truce runs to January 10, 2027, the two sides held the first meeting of their new Board of Trade on November 13, and Xi hosts Trump at the APEC summit in Shenzhen on November 18–19. ASEAN and China missed their 2026 target for a South China Sea code of conduct.' },
       { t: 'Partners', s: 'Ongoing', d: 'Beijing is Russia’s main economic lifeline and a major buyer of Iranian oil.' }
     ],
     timeline: [
+      ['Nov 18–19, 2026', 'APEC leaders’ summit in Shenzhen; Trump and Xi due to meet, with Putin possibly joining.'],
+      ['Nov 13, 2026', 'First US–China Board of Trade meeting.'],
       ['Mar 14–15, 2026', 'Large-scale drills around Taiwan resume.'],
       ['Dec 29–30, 2025', '"Justice Mission 2025" drills around Taiwan.']
     ],
     sources: [
+      ['GV Wire/Reuters: US, China hold first Board of Trade meeting', 'https://gvwire.com/2026/11/13/us-china-hold-first-board-of-trade-meeting/'],
+      ['Business Today: Trump, Xi, Putin set for talks at APEC', 'https://www.businesstoday.in/world/story/trump-xi-putin-set-for-unprecedented-trilateral-talks-at-apec-summit-in-shenzhen-567494-2026-11-14'],
       ['Reuters via Citizen Digital: Taiwan vows to defend sovereignty', 'https://www.citizen.digital/article/taiwan-vows-to-defend-sovereignty-after-chinas-military-drill-n375148'],
       ['California Insider: China restarts drills (Mar 2026)', 'https://californiainsider.com/news/china-restarts-large-scale-military-drills-around-taiwan-after-sudden-hiaitus-5999039']
     ]
@@ -308,16 +347,19 @@ export const B = {
     issues: [
       { t: 'Chinese military pressure', s: 'High tension', d: 'Drills in late December 2025 forced dozens of domestic flights to be cancelled. China said for the first time that its exercises aimed to deter outside intervention.' },
       { t: 'Defence buildup', s: 'Ongoing', d: 'Lai wants defence spending above 3% of GDP in 2026 and 5% by 2030. The US approved a record US$11.1 billion arms package in December 2025.' },
-      { t: 'Divided government', s: 'Watch', d: 'The opposition controls the legislature, which has slowed parts of Lai’s agenda.' }
+      { t: 'Divided government', s: 'Watch', d: 'The opposition controls the legislature, which has slowed parts of Lai’s agenda. Local elections are on November 28, 2026. On November 8 prosecutors said they had detained Lin Te-wang, founder of the small Taiwan People’s Communist Party, accusing him of taking Chinese Communist Party funding and instructions for local campaigns.' }
     ],
     timeline: [
+      ['Nov 28, 2026', 'Local elections.'],
+      ['Nov 8, 2026', 'Prosecutors detain a small pro-Beijing party’s founder under the Anti-Infiltration Act.'],
       ['Mar 2026', 'Chinese drills resume after a pause.'],
       ['Jan 1, 2026', 'Lai vows to defend Taiwan’s sovereignty.'],
       ['Dec 2025', 'Record US arms package, then major Chinese drills.']
     ],
     sources: [
       ['Reuters via Citizen Digital: Taiwan vows to defend sovereignty', 'https://www.citizen.digital/article/taiwan-vows-to-defend-sovereignty-after-chinas-military-drill-n375148'],
-      ['The Sun: Lai’s defence spending targets', 'https://thesun.my/news/world-news/taiwans-president-vows-to-defend-sovereignty/']
+      ['The Sun: Lai’s defence spending targets', 'https://thesun.my/news/world-news/taiwans-president-vows-to-defend-sovereignty/'],
+      ['Focus Taiwan: party founder detained (Nov 8)', 'https://focustaiwan.tw/society/202611080010']
     ]
   },
   IND: {
@@ -514,7 +556,7 @@ export const LINKS = [
     d: 'China claims most of the South China Sea despite a 2016 international ruling against it. Its coast guard and navy patrol around Scarborough Shoal, and the Philippines has accused Chinese vessels of water-cannon attacks on its ships.',
     src: [['gCaptain: China patrols around Scarborough Shoal', 'https://gcaptain.com/china-conducts-patrols-around-scarborough-shoal-in-disputed-south-china-sea/'], ['The Vibes: second water cannon attack', 'https://www.thevibes.com/articles/world/125397/philippines-accuses-china-of-second-water-cannon-attack-as-south-china-sea-tensions-escalate']] },
   { a: 'YEM', b: 'SAU', type: 'conflict', tier: 2, label: 'Houthi attacks in the Red Sea', hub: [15.5, 41.6],
-    d: 'Yemen’s Iran-backed Houthi movement, which controls the capital Sanaa, escalated attacks on Red Sea shipping and on Saudi Arabia in 2026. The UN says the 2022 truce collapsed in July. On November 7 the Houthis said Saudi strikes killed 33 near Sanaa, and on November 8 Saudi Arabia intercepted missiles fired at Riyadh and the Eastern Province.',
+    d: 'Yemen’s Iran-backed Houthi movement, which controls the capital Sanaa, escalated attacks on Red Sea shipping and on Saudi Arabia in 2026. The UN says the 2022 truce collapsed in July. On November 7 the Houthis said Saudi strikes killed 33 near Sanaa, and on November 8 Saudi Arabia intercepted missiles fired at Riyadh and the Eastern Province, with debris damaging the Aramco Tower.',
     src: [['Al Jazeera, Nov 8, 2026', 'https://www.aljazeera.com/news/2026/11/8/saudi-arabia-intercepts-houthi-missiles-targeting-riyadh-eastern-province'], ['FDD Long War Journal, Aug 2026', 'https://www.fdd.org/analysis/2026/08/06/houthis-escalate-attacks-in-red-sea-and-on-saudi-arabia-riyadh-evaluates-options/']] },
   { a: 'ARE', b: 'SDN', type: 'dispute', tier: 2, label: 'Accused of arming the RSF',
     d: 'Sudan’s army-led government accuses the UAE of arming the RSF and has cut diplomatic ties. The UAE denies supplying the paramilitary group.',
@@ -533,8 +575,8 @@ export const LINKS = [
     d: 'Trump has repeatedly said the US should control Greenland, a self-governing part of Denmark. Talks at the White House in January 2026 ended in disagreement, and Greenland’s leaders say they choose Denmark.',
     src: [['The National, Jan 2026', 'https://www.thenationalnews.com/news/us/2026/01/14/trump-us-control-greenland-denmark'], ['Congressional Research Service, Jan 2026', 'https://www.everycrsreport.com/reports/IN12643.html']] },
   { a: 'USA', b: 'MEX', type: 'dispute', tier: 3, label: 'Tariffs and cartels',
-    d: 'Washington has pressed Mexico with tariffs and demands to curb cartels and fentanyl. The killing of cartel leader "El Mencho" in a February 2026 Mexican operation set off cartel retaliation.',
-    src: [['ROIC: cartel crackdown and trade tensions, Feb 2026', 'https://www.roic.ai/news/us-mexico-cartel-crackdown-intensifies-as-el-mencho-killing-sparks-retaliation-and-trade-tensions-02-23-2026']] },
+    d: 'Washington has pressed Mexico with tariffs and demands to curb cartels and fentanyl. The killing of cartel leader "El Mencho" in a February 2026 Mexican operation set off cartel retaliation. On November 12 Trump threatened “doubled tariffs” unless Mexico stops a migrant caravan heading north.',
+    src: [['TPR: Trump threatens to double Mexico tariffs (Nov 12)', 'https://www.tpr.org/border-immigration/2026-11-12/trump-threatens-to-double-mexico-tariffs-as-migrants-head-north'], ['ROIC: cartel crackdown and trade tensions, Feb 2026', 'https://www.roic.ai/news/us-mexico-cartel-crackdown-intensifies-as-el-mencho-killing-sparks-retaliation-and-trade-tensions-02-23-2026']] },
 
   /* ---- Minor (4) ---- */
   { a: 'ARM', b: 'AZE', type: 'diplomacy', tier: 4, label: 'Peace deal initialed, not yet signed',
@@ -560,7 +602,7 @@ export const LINKS = [
     d: 'Close allies through AUKUS, a submarine and technology pact with the UK, and the Quad grouping with India and Japan.', src: [] },
   /* ---- more Significant / Minor ---- */
   { a: 'CAN', b: 'USA', type: 'dispute', tier: 3, label: 'Trade war',
-    d: 'The trade fight that began in 2025 escalated in August 2026, when the US put 50% tariffs on about US$20 billion of Canadian goods. Canada answered with counter-tariffs from September 8.',
+    d: 'The trade fight that began in 2025 escalated in August 2026, when the US put 50% tariffs on about US$20 billion of Canadian goods. Canada answered with counter-tariffs from September 8. On November 14 Carney said talks with Trump on a deal are “making progress” but “not yet there.”',
     src: [['Osler: Section 338 tariffs and Canada’s response', 'https://www.osler.com/en/insights/updates/elbows-back-up-u-s-section-338-tariffs-canada-retaliatory-surtaxes-current-landscape/'], ['Sentisense: US imposes 50% tariffs', 'https://app.sentisense.ai/stories/us-imposes-50-percent-tariffs-on-20-billion-of-canadian-goods-canada-vows-dollar-08222026']] },
   { a: 'PAK', b: 'IRN', type: 'diplomacy', tier: 4, label: 'Mediated the US–Iran truce',
     d: 'Pakistan helped broker the April 2026 US–Iran ceasefire and hosted talks in Islamabad.',
@@ -586,7 +628,19 @@ export const LINKS = [
   { a: 'DEU', b: 'UKR', type: 'alliance', tier: 5, label: 'Military aid', d: 'Europe’s largest supplier of military aid to Ukraine.', src: [] },
   { a: 'FRA', b: 'UKR', type: 'alliance', tier: 5, label: 'Military aid', d: 'A leading backer of Ukraine and of European security guarantees for it.', src: [] },
   { a: 'POL', b: 'UKR', type: 'alliance', tier: 5, label: 'Supply hub', d: 'The main route for Western weapons and aid entering Ukraine.', src: [] },
-  { a: 'EGY', b: 'SDN', type: 'alliance', tier: 5, label: 'Backs Sudan’s army', d: 'Egypt is widely seen as supporting Sudan’s army against the RSF.', src: [] }
+  { a: 'EGY', b: 'SDN', type: 'alliance', tier: 5, label: 'Backs Sudan’s army', d: 'Egypt is widely seen as supporting Sudan’s army against the RSF.', src: [] },
+  { a: 'SYR', b: 'SAU', type: 'alliance', tier: 3, label: 'Syrian troops help against the Houthis',
+    d: 'Syria confirmed in November 2026 that it sent soldiers to Saudi Arabia for training and expertise exchange as the kingdom’s war with the Houthis escalated. AFP sources say Syrians are leading drone operations in Yemen, which Damascus denies.',
+    src: [['Al Jazeera, Nov 9, 2026', 'https://www.aljazeera.com/features/2026/11/9/syria-confirms-sending-troops-to-saudi-arabia-amid-battle-against-houthis']] },
+  { a: 'EGY', b: 'SAU', type: 'alliance', tier: 3, label: 'Egyptian forces defend Saudi sites',
+    d: 'Egypt’s foreign minister said in November 2026 that Egyptian forces are in Saudi Arabia and being reinforced to help defend sensitive sites, including holy sites. Egypt’s parliament approved the deployment in October.',
+    src: [['The National, Nov 11, 2026', 'https://thenationalnews.com/news/mena/2026/11/11/egypts-foreign-minister-says-countrys-military-is-helping-saudi-arabia-defend-sensitive-sites']] },
+  { a: 'USA', b: 'CUB', type: 'dispute', tier: 3, label: 'Oil blockade and threats',
+    d: 'Since Maduro’s capture in January 2026 cut off Venezuelan oil, the US has threatened tariffs on anyone supplying Cuba with fuel and widened sanctions. On November 12 Trump said he wants to “get Cuba done” before leaving office and would “certainly consider” military force.',
+    src: [['Al Jazeera, Nov 13, 2026', 'https://www.aljazeera.com/news/2026/11/13/trump-moots-toppling-cuba-authorities-before-leaving-office'], ['NBC News', 'https://www.nbcnews.com/politics/white-house/trump-cuba-military-force-rubio-rcna609138']] },
+  { a: 'RUS', b: 'ARM', type: 'dispute', tier: 4, label: 'Armenia loses its CSTO vote',
+    d: 'The Kremlin said on November 11, 2026 that Armenia had been stripped of its voting rights in the Russia-led CSTO alliance over unmet obligations. Armenia froze its participation in 2024 and is turning toward the West.',
+    src: [['OC Media, Nov 2026', 'https://oc-media.org/armenia-stripped-of-voting-rights-in-russia-led-csto-as-moscow-relations-continue-to-deteriorate/']] }
 ];
 
 export const HOTS = [
@@ -751,10 +805,6 @@ export const PULSE = [
     t: 'Canada’s push to rely less on the US',
     d: 'Since a January 2026 speech at Davos on how "middle powers" must work together, PM Mark Carney has signed an EVs-for-canola deal with China, toured India, Australia and Japan for new markets, and joined the EU’s defence buying programme. Statistics Canada data shows the US still takes most exports, so economists debate how fast this can work.',
     src: [['Fortune: Carney meant what he said in Davos', 'https://fortune.com/2026/01/28/carney-meant-what-he-said-in-davos-splitting-with-america-new-trade-deals/'], ['The Hub: diversification debate, May 2026', 'https://thehub.ca/2026/05/05/statistics-canada-trade-data-fuels-debate-over-carney-governments-diversification-strategy/']] },
-  { theme: 'trade', iso: ['CAN', 'CHN'], date: 'Jan 2026',
-    t: 'Canada and China cut EV and canola tariffs',
-    d: 'Canada agreed to admit a quota of Chinese electric vehicles at a lower tariff, and China cut tariffs on Canadian canola, resetting a relationship that had been frozen for years.',
-    src: [['Al Jazeera, Jan 16, 2026', 'https://www.aljazeera.com/economy/2026/1/16/canada-china-strike-trade-deals-to-slash-tariffs-on-evs-canola'], ['Global News', 'https://globalnews.ca/news/11616295/carney-landmark-china-deal-tariffs-quota']] },
   { theme: 'economy', iso: ['CAN'], date: '2026',
     t: 'Canada rearms with Europe',
     d: 'Canada hit NATO’s 2% defence-spending target and became the first non-European partner in the EU’s €150 billion SAFE programme, letting Canadian firms bid on European defence contracts and vice versa.',
@@ -763,38 +813,46 @@ export const PULSE = [
     t: 'Andy Burnham becomes UK prime minister',
     d: 'Keir Starmer resigned, and the former Mayor of Greater Manchester took over in July 2026. He is Britain’s seventh prime minister in about ten years.',
     src: [['NPR: Andy Burnham takes over', 'https://www.nprillinois.org/2026-07-20/andy-burnham-takes-over-as-uk-prime-minister']] },
-  { theme: 'economy', iso: ['CHN'], date: 'Mar 2026',
-    t: 'China sets its lowest growth target in decades',
-    d: 'Beijing aims for 4.5% to 5% growth in 2026 as weak consumer spending, a long property slump and falling prices weigh on the economy. Cheap Chinese exports are fuelling trade fights abroad.',
-    src: [['NPR, Mar 5, 2026', 'https://www.npr.org/2026/03/05/g-s1-112586/china-sets-a-lower-economic-growth-target-of-4-5-to-5-for-2026-as-challenges-loom']] },
   { theme: 'trade', iso: ['IND', 'USA'], date: 'Feb 2026',
     t: 'US cuts tariffs on India to 18%',
     d: 'A February 2026 deal cut US tariffs on Indian goods to 18%, down from levels that hit 50% in 2025 over India’s purchases of Russian oil. A final agreement is still pending.',
     src: [['Morgan Lewis, Feb 2026', 'https://www.morganlewis.com/pubs/2026/02/us-india-trade-deal-cuts-tariffs-eases-tensions']] },
   { theme: 'economy', iso: ['JPN'], date: '2026',
     t: 'Japan bets on big spending under Takaichi',
-    d: 'After a resounding election win in February 2026, Prime Minister Sanae Takaichi is pushing large stimulus and defence budgets. Stocks hit records while the yen weakened, raising worries about Japan’s debt.',
-    src: [['Bloomberg: the catch-22 after Takaichi’s win', 'https://www.bloomberg.com/news/newsletters/2026-02-09/the-catch-22-confronting-japan-s-takaichi-after-her-resounding-election-victory']] },
-  { theme: 'economy', iso: ['DEU'], date: 'Sep 2026',
-    t: 'Germany edges out of stagnation',
-    d: 'After two years of shrinking output, Chancellor Friedrich Merz says he expects about 1.3% growth in 2026, helped by heavy spending on defence and infrastructure. Weak exports to China and high energy costs still hold industry back.',
-    src: [['deutschland.de: Merz sees recovery', 'https://www.deutschland.de/en/news/merz-sees-economic-recovery-in-germany'], ['RTÉ: Germany lowers 2026 forecast, Jan 2026', 'https://www.rte.ie/news/business/2026/0128/1555575-germany-lowers-2026-economic-growth-forecast-to-1']] },
+    d: 'After a resounding election win in February 2026, Prime Minister Sanae Takaichi is pushing large stimulus and defence budgets. Stocks hit records while the yen weakened, raising worries about Japan’s debt. On November 12 the yen passed 160 per US dollar, and the finance minister warned of action to support it.',
+    src: [['Bloomberg: Katayama warns of FX steps, Nov 13', 'https://www.bloomberg.com/news/articles/2026-11-13/japan-s-katayama-warns-of-fx-steps-after-one-sided-rapid-moves'], ['Bloomberg: the catch-22 after Takaichi’s win', 'https://www.bloomberg.com/news/newsletters/2026-02-09/the-catch-22-confronting-japan-s-takaichi-after-her-resounding-election-victory']] },
+  { theme: 'economy', iso: ['DEU'], date: 'Nov 13, 2026',
+    t: 'Germany plans near-record borrowing for 2027',
+    d: 'The Bundestag budget committee agreed a 2027 budget of about €561 billion with €210 billion in new borrowing, just under the 2021 record, to pay for defence and infrastructure. The full Bundestag still has to vote. Merz expects modest growth after two years of shrinking output.',
+    src: [['Investing.com/Reuters: budget committee agrees 2027 budget', 'https://www.investing.com/news/economy-news/german-budget-committee-agrees-on-2027-budget-5024172'], ['deutschland.de: Merz sees recovery', 'https://www.deutschland.de/en/news/merz-sees-economic-recovery-in-germany'], ['RTÉ: Germany lowers 2026 forecast, Jan 2026', 'https://www.rte.ie/news/business/2026/0128/1555575-germany-lowers-2026-economic-growth-forecast-to-1']] },
   { theme: 'election', iso: ['USA'], date: 'Nov 3, 2026', pin: [38.9, -77.04, 'US midterms'],
     t: 'Democrats win both houses of Congress',
     d: 'Democrats will hold at least 54 Senate seats from January, with Alaska and Mississippi still uncalled. CBS projects about 256 House seats, with more than 20 races uncalled. They also flipped governorships in Texas, Georgia, Ohio and Iowa, and are projected to win Nevada. Trump then named Stephen Miller as his chief of staff.',
     src: [['CBS News: midterm results', 'https://www.cbsnews.com/live-updates/midterm-election-results-2026-democrats-house-senate-trump/']] },
-  { theme: 'election', iso: ['ISR'], date: 'Nov 7, 2026', pin: [31.77, 35.21, 'Jerusalem'],
-    t: 'Eisenkot gets first shot at replacing Netanyahu',
-    d: 'After the October 27 election, 67 of 120 lawmakers, including Arab-led parties, recommended former army chief Gadi Eisenkot, and President Herzog asked him to form a government. He has 28 days plus a possible 14-day extension. Netanyahu says such a government would depend on “Islamists”.',
-    src: [['Al Jazeera, Nov 7', 'https://www.aljazeera.com/news/2026/11/7/israels-president-picks-eisenkot-over-netanyahu-to-form-next-government'], ['Ynet: recommendations', 'https://ynetnews.com/article/rydawnytgl']] },
+  { theme: 'election', iso: ['ISR'], date: 'Nov 2026', pin: [31.77, 35.21, 'Jerusalem'],
+    t: 'Eisenkot tries to replace Netanyahu',
+    d: 'After the October 27 election, 67 of 120 lawmakers, including Arab-led parties, recommended former army chief Gadi Eisenkot, and President Herzog asked him to form a government by December 6, extendable to December 20. Netanyahu is pushing a unity government that he would lead; Eisenkot calls that a “bluff”, and the ultra-Orthodox parties remain far from agreement with him.',
+    src: [['Al Jazeera, Nov 15', 'https://www.aljazeera.com/news/2026/11/15/can-netanyahu-and-eisenkot-form-a-unity-government-in-israel'], ['Al Jazeera, Nov 7', 'https://www.aljazeera.com/news/2026/11/7/israels-president-picks-eisenkot-over-netanyahu-to-form-next-government'], ['Ynet: recommendations', 'https://ynetnews.com/article/rydawnytgl']] },
+  { theme: 'election', iso: ['ESP'], date: 'Nov 29, 2026', pin: [40.42, -3.70, 'Madrid'],
+    t: 'Spain votes in a snap election',
+    d: 'PM Pedro Sánchez called the election in October after parliament defeated his housing decrees. Housing costs are voters’ top concern.',
+    src: [['Al Jazeera: Sánchez calls snap election, Oct 5', 'https://www.aljazeera.com/news/2026/10/5/spanish-prime-minister-pedro-sanchez-announces-snap-election']] },
+  { theme: 'election', iso: ['IDN'], date: 'Nov 12, 2026', pin: [-6.2, 106.85, 'Jakarta'],
+    t: 'Indonesia’s vice-president resigns',
+    d: 'Gibran Rakabuming Raka, son of former president Joko Widodo, stepped down after courts ruled his foreign education papers did not meet election rules. President Prabowo accepted "with a heavy heart". The People’s Consultative Assembly must pick a successor from two Prabowo nominees within 60 days.',
+    src: [['Al Jazeera, Nov 12', 'https://www.aljazeera.com/news/2026/11/12/indonesia-vice-president-resigns-amid-dispute-over-eligibility'], ['ABC News (Australia)', 'https://www.abc.net.au/news/2026-11-12/indonesia-vice-president-gibran-rakabuming-raka-resigns/107370802']] },
+  { theme: 'election', iso: ['SSD'], date: 'Feb 11, 2027', pin: [4.85, 31.58, 'Juba'],
+    t: 'South Sudan delays its first election again',
+    d: 'The election commission moved the country’s first national vote from December 22, 2026 to February 11, 2027, citing voter registration and logistics.',
+    src: [['Reuters via Yahoo, Nov 14', 'https://www.yahoo.com/news/articles/south-sudan-delays-election-february-083224794.html']] },
   { theme: 'election', iso: ['BRA'], date: 'Oct 2026', pin: [-15.79, -47.88, 'Brasília'],
     t: 'Lula re-elected in Brazil',
     d: 'President Luiz Inácio Lula da Silva beat Senator Flávio Bolsonaro in the October runoff. Bolsonaro has sought to annul the result.',
     src: [['Benin Web TV: Lula re-elected in runoff', 'https://beninwebtv.bj/en/brazil-lula-re-elected-against-flavio-bolsonaro-in-runoff/']] },
-  { theme: 'protest', iso: ['FRA'], date: 'Oct 2026', pin: [48.86, 2.35, 'Paris'],
-    t: 'Cost-of-living riots in France',
-    d: 'Nationwide protests over prices, fuel and public services turned into some of France’s worst unrest in decades on October 17. Police estimated about 200,000 protesters, and PM Sébastien Lecornu said 1,200 were arrested and 150 officers hurt. The government deployed 70,000 police, and more marches followed on October 24.',
-    src: [['The Star/Reuters: protests across Europe, Oct 18', 'https://www.thestar.com.my/news/world/2026/10/18/europe-on-fire-protests-seen-in-france-belgium-italy-portugal-albania-with-many-turning-violent'], ['LIGA.net: hundreds of thousands march again, Oct 24', 'https://news.liga.net/en/amp/world/news/in-france-hundreds-of-thousands-of-people-took-to-the-streets-again-to-protest-the-slogans-were-directed-against-both-macron-and-le-pen']] },
+  { theme: 'protest', iso: ['FRA'], date: 'Oct–Nov 2026', pin: [48.86, 2.35, 'Paris'],
+    t: 'Cost-of-living protests in France',
+    d: 'Nationwide protests over prices, fuel and public services turned into some of France’s worst unrest in decades on October 17. Police estimated about 200,000 protesters, and PM Sébastien Lecornu said 1,200 were arrested and 150 officers hurt. The government deployed 70,000 police. November 14 was the fifth Saturday of nationwide protests in a row, also over education funding and a police bill; the interior ministry counted 106,000 marchers.',
+    src: [['Euronews: fifth Saturday of protests, Nov 14', 'https://www.euronews.com/2026/11/14/france-sees-fifth-consecutive-saturday-of-nationwide-protests'], ['The Star/Reuters: protests across Europe, Oct 18', 'https://www.thestar.com.my/news/world/2026/10/18/europe-on-fire-protests-seen-in-france-belgium-italy-portugal-albania-with-many-turning-violent'], ['LIGA.net: hundreds of thousands march again, Oct 24', 'https://news.liga.net/en/amp/world/news/in-france-hundreds-of-thousands-of-people-took-to-the-streets-again-to-protest-the-slogans-were-directed-against-both-macron-and-le-pen']] },
   { theme: 'protest', iso: ['BEL', 'ITA', 'PRT', 'ALB'], date: 'Oct 2026',
     t: 'Protests spread across Europe',
     d: 'Living costs brought people out in Belgium, Italy and Portugal on October 17, with clashes in Brussels and Milan. In Albania, days of protests against corruption and a lack of jobs met water cannon and rubber bullets.',
@@ -803,38 +861,42 @@ export const PULSE = [
     t: 'The Gen Z protest wave',
     d: 'Youth-led protests over corruption, jobs and services toppled Nepal’s government in September 2025 and preceded a military takeover in Madagascar a month later. Similar movements hit Morocco, Kenya, Indonesia, Peru and the Philippines, and researchers say the surge has continued into 2026.',
     src: [['Thomson Reuters Foundation: a year of Gen Z protests', 'https://www.context.news/money-power-people/a-year-of-gen-z-protests-can-they-bring-real-change-in-2026'], ['European Democracy Hub: protest surge continuing in 2026', 'https://europeandemocracyhub.epd.eu/wp-content/uploads/2026/06/The-2025-Surge-in-Global-Protests-Is-Continuing-in-2026.pdf']] },
-  { theme: 'trade', iso: ['USA', 'CHN'], date: 'Now to Jan 10',
-    t: 'US–China trade truce runs to January 10',
-    d: 'The truce Trump and Xi agreed in late 2025 cut US fentanyl tariffs to 10% and paused new hikes. It was due to end on November 10 but was extended in September to January 10, 2027. On November 6, US officials told China to honour its commitments “fully and immediately”, saying it has delivered about two-thirds of its rare-earth pledge.',
-    src: [['Korea Times: truce extended two months', 'https://www.koreatimes.co.kr/world/20260924/us-china-agree-to-extend-trade-truce-by-two-months-work-on-bigger-deal-bessent-says'], ['Polsinelli: lower tariffs under the China deal', 'https://www.polsinelli.com/customs/publications/lower-tariffs-take-effect-under-new-china-trade-deal']] },
+  { theme: 'trade', iso: ['USA', 'CHN'], date: 'Nov 2026',
+    t: 'US–China trade truce, and a summit in Shenzhen',
+    d: 'The truce Trump and Xi agreed in late 2025 cut US fentanyl tariffs to 10% and paused new hikes. It was due to end on November 10 but was extended in September to January 10, 2027. On November 6, US officials told China to honour its commitments “fully and immediately”, saying it has delivered about two-thirds of its rare-earth pledge. The two sides held the first meeting of their new Board of Trade on November 13, and Trump meets Xi at the APEC summit in Shenzhen on November 18–19.',
+    src: [['GV Wire/Reuters: first Board of Trade meeting', 'https://gvwire.com/2026/11/13/us-china-hold-first-board-of-trade-meeting/'], ['Korea Times: truce extended two months', 'https://www.koreatimes.co.kr/world/20260924/us-china-agree-to-extend-trade-truce-by-two-months-work-on-bigger-deal-bessent-says'], ['Polsinelli: lower tariffs under the China deal', 'https://www.polsinelli.com/customs/publications/lower-tariffs-take-effect-under-new-china-trade-deal']] },
   { theme: 'trade', iso: ['CAN', 'USA'], date: 'Nov 2026',
-    t: 'Canada–US tariff fight, and a new Congress',
-    d: 'The US put 50% tariffs on about US$20 billion of Canadian goods in August 2026, Canada answered with counter-tariffs, and Trump has threatened tariffs on Canadian cars from January. After the midterms, Democrats say they will try to repeal the Canada tariffs, which Carney welcomed; Trump could veto any repeal. Canada’s unemployment rate rose to 6.7% in October.',
-    src: [['AP via KIRO 7: Carney welcomes Democrats’ push', 'https://www.kiro7.com/news/business/carney-welcomes/DXMN7D565E7X7JKERZI3ITBFNY/'], ['BNN Bloomberg: unemployment 6.7%', 'https://www.bnnbloomberg.ca/business/economics/2026/11/06/unemployment-rate-rose-to-67-in-october-statcan-says/'], ['Osler: Section 338 tariffs', 'https://www.osler.com/en/insights/updates/elbows-back-up-u-s-section-338-tariffs-canada-retaliatory-surtaxes-current-landscape/']] },
-  { theme: 'trade', iso: ['USA', 'MEX'], date: '2026',
-    t: 'Tariffs and the cartel crackdown',
-    d: 'Washington ties trade pressure on Mexico to fentanyl and cartels. The killing of cartel leader "El Mencho" in February 2026 set off retaliation.',
-    src: [['ROIC, Feb 2026', 'https://www.roic.ai/news/us-mexico-cartel-crackdown-intensifies-as-el-mencho-killing-sparks-retaliation-and-trade-tensions-02-23-2026']] },
+    t: 'Canada–US tariff fight, and talk of a deal',
+    d: 'The US put 50% tariffs on about US$20 billion of Canadian goods in August 2026, Canada answered with counter-tariffs, and Trump has threatened tariffs on Canadian cars from January. After the midterms, Democrats say they will try to repeal the Canada tariffs, which Carney welcomed; Trump could veto any repeal. Canada’s unemployment rate rose to 6.7% in October. On November 14, after a long call with Trump, Carney said talks are “making progress” but “not yet there”, and US Treasury Secretary Bessent says he is optimistic about deals with Canada and Mexico.',
+    src: [['AP via KIRO 7: Carney says progress with Trump, Nov 14', 'https://www.kiro7.com/news/business/canadas-carney/JZFSONP2EA4RLPSSNXKZ4LC7KU/'], ['AP via KIRO 7: Carney welcomes Democrats’ push', 'https://www.kiro7.com/news/business/carney-welcomes/DXMN7D565E7X7JKERZI3ITBFNY/'], ['BNN Bloomberg: unemployment 6.7%', 'https://www.bnnbloomberg.ca/business/economics/2026/11/06/unemployment-rate-rose-to-67-in-october-statcan-says/'], ['Osler: Section 338 tariffs', 'https://www.osler.com/en/insights/updates/elbows-back-up-u-s-section-338-tariffs-canada-retaliatory-surtaxes-current-landscape/']] },
+  { theme: 'trade', iso: ['USA', 'MEX'], date: 'Nov 12, 2026',
+    t: 'Trump threatens to double Mexico tariffs over a caravan',
+    d: 'Trump said Mexico must stop a migrant caravan of about 1,000 to 2,000 people that left Tapachula on November 10, or "immediately face doubled tariffs". He named no rate or deadline. President Sheinbaum says no caravan has reached the US border since Trump returned and that Mexico will accompany migrants rather than repress them.',
+    src: [['TPR: Trump threatens to double Mexico tariffs', 'https://www.tpr.org/border-immigration/2026-11-12/trump-threatens-to-double-mexico-tariffs-as-migrants-head-north'], ['ROIC, Feb 2026', 'https://www.roic.ai/news/us-mexico-cartel-crackdown-intensifies-as-el-mencho-killing-sparks-retaliation-and-trade-tensions-02-23-2026']] },
   { theme: 'energy', iso: ['IRN', 'OMN', 'IND', 'CHN'], date: 'Nov 2026', pin: [26.57, 56.25, 'Hormuz'],
     t: 'Who controls the Strait of Hormuz',
-    d: 'About a fifth of the world’s oil normally passes through the strait. Iran keeps it largely closed, but says ships from India, China, Iraq and Qatar pass, with Indian and Chinese ships paying fees. The US blockade of Iranian ports continues, and on November 7 the US set up a task force to restrict Iran’s land trade as well. Iran says it will reopen the strait if the US ends the blockade and lifts sanctions.',
-    src: [['Al Jazeera, Nov 6', 'https://www.aljazeera.com/news/2026/11/6/why-is-iran-exempting-india-china-qatar-iraq-from-hormuz-restrictions'], ['Al Jazeera, Nov 8', 'https://www.aljazeera.com/news/2026/11/8/us-launches-task-force-to-disrupt-irans-land-based-supply-routes']] },
-  { theme: 'energy', iso: ['YEM', 'SAU', 'EGY'], date: 'Nov 2026', pin: [24.71, 46.68, 'Riyadh'],
+    d: 'About a fifth of the world’s oil normally passes through the strait. Iran keeps it largely closed, but says ships from India, China, Iraq and Qatar pass, with Indian and Chinese ships paying fees. The US blockade of Iranian ports continues, and on November 7 the US set up a task force to restrict Iran’s land trade as well. Iran says it will reopen the strait if the US ends the blockade and lifts sanctions. On November 14 Iranian state media said three tankers caught fire after hitting mines there, which Reuters could not verify.',
+    src: [['Al-Monitor/Reuters, Nov 14', 'https://www.al-monitor.com/originals/2026/11/irans-navy-says-three-tankers-fire-after-hitting-mines-hormuz'], ['Al Jazeera, Nov 6', 'https://www.aljazeera.com/news/2026/11/6/why-is-iran-exempting-india-china-qatar-iraq-from-hormuz-restrictions'], ['Al Jazeera, Nov 8', 'https://www.aljazeera.com/news/2026/11/8/us-launches-task-force-to-disrupt-irans-land-based-supply-routes']] },
+  { theme: 'energy', iso: ['YEM', 'SAU', 'EGY', 'SYR'], date: 'Nov 2026', pin: [24.71, 46.68, 'Riyadh'],
     t: 'Houthis fire at Riyadh as the Yemen war widens',
-    d: 'The UN says the 2022 Saudi–Houthi truce collapsed in July. On November 8 Saudi Arabia intercepted missiles aimed at Riyadh and the Eastern Province, and debris damaged the Aramco Tower. A day earlier the Houthis said Saudi strikes killed 33 near Sanaa. Attacks keep many carriers away from the Red Sea route to the Suez Canal.',
+    d: 'The UN says the 2022 Saudi–Houthi truce collapsed in July. On November 8 Saudi Arabia intercepted missiles aimed at Riyadh and the Eastern Province, and debris damaged the Aramco Tower. A day earlier the Houthis said Saudi strikes killed 33 near Sanaa. Syria has sent soldiers to Saudi Arabia, and Egypt says its forces are helping defend Saudi sites. Attacks keep many carriers away from the Red Sea route to the Suez Canal.',
     src: [['Al Jazeera, Nov 8', 'https://www.aljazeera.com/news/2026/11/8/saudi-arabia-intercepts-houthi-missiles-targeting-riyadh-eastern-province'], ['Middle East Eye: Aramco tower damaged', 'https://www.middleeasteye.net/news/saudi-aramco-tower-damaged-after-houthi-missile-attacks-riyadh']] },
   { theme: 'economy', iso: ['USA', 'CHN', 'IND', 'RUS'], date: 'Oct 2026',
     t: 'Gold above US$3,800 after a record run',
     d: 'Gold broke US$4,000 an ounce for the first time in October 2025 on rate-cut bets and global turmoil. It started October 2026 near US$4,180 and ended the month near US$3,880. Central banks, especially in emerging markets, keep buying it as a hedge against the dollar.',
     src: [['PriceGold: October 2026 prices', 'https://pricegold.net/2026/october/'], ['FXStreet: gold blazes past $4,000, Oct 2025', 'https://www.fxstreet.com/news/gold-blazes-past-4-000-to-all-time-highs-ahead-of-fed-minutes-202510081804']] },
+  { theme: 'ai', iso: ['USA', 'CHN'], date: 'Nov 12, 2026', pin: [37.37, -121.96, 'Santa Clara'],
+    t: 'Jensen Huang quits as Nvidia’s CEO',
+    d: 'Huang resigned as CEO and left the board after admitting an affair that the board is investigating. Reports say it was with a former executive at a Singapore firm alleged to have links to Chinese intelligence. The board says it has no reason to believe national security was compromised. CFO Colette Kress is interim CEO, and the scandal has sharpened scrutiny of how Chinese firms obtain US AI chips.',
+    src: [['Al Jazeera, Nov 12', 'https://www.aljazeera.com/news/2026/11/12/why-did-nvidia-ceo-jensen-huang-resign-and-who-is-colette-kress'], ['NPR, Nov 12', 'https://www.npr.org/2026/11/12/nx-s1-6037833/jensen-huang-nvidia-stepped-down']] },
   { theme: 'ai', iso: ['USA', 'CHN', 'TWN'], date: '2026',
     t: 'The AI chip race',
     d: 'Advanced AI chips are now a national-security asset. Washington weighed sweeping new limits on AI-chip exports in 2026, while Taiwan makes most of the world’s cutting-edge chips, which adds weight to every Taiwan Strait crisis.',
     src: [['TechCrunch, Mar 2026: US considering sweeping chip export controls', 'https://techcrunch.com/2026/03/05/us-reportedly-considering-sweeping-new-chip-export-controls/']] },
-  { theme: 'crime', iso: ['HTI'], date: 'Oct 2026', pin: [18.54, -72.34, 'Port-au-Prince'],
+  { theme: 'crime', iso: ['HTI', 'SLV'], date: 'Nov 2026', pin: [18.54, -72.34, 'Port-au-Prince'],
     t: 'Haiti’s gangs take on a new foreign force',
-    d: 'A UN-backed Gang Suppression Force, with troops from Chad and others, replaced the Kenya-led mission in 2026. On October 19, gangs launched their biggest attack yet on the foreign troops. El Salvador has sent up to 2,000 troops after four of its soldiers were kidnapped, and on November 6 police said they killed Cité Soleil gang leader Mathias Saintil.',
-    src: [['Al Jazeera, Nov 7', 'https://www.aljazeera.com/news/2026/11/7/one-less-gang-leader-haitis-prime-minister-celebrates-police-operation'], ['AP via ClickOnDetroit, Oct 19', 'https://www.clickondetroit.com/news/world/2026/10/19/gangs-in-haiti-target-foreign-troops-in-biggest-attack-since-new-force-began-operations/'], ['Africanews: Chad to deploy 800 troops', 'https://www.africanews.com/amp/2026/03/21/chad-to-deploy-800-troops-to-haitis-gang-suppression-force-as-kenya-steps-back/']] },
+    d: 'A UN-backed Gang Suppression Force, with troops from Chad and others, replaced the Kenya-led mission in 2026. On October 19, gangs launched their biggest attack yet on the foreign troops. El Salvador has sent up to 2,000 troops after four of its soldiers were kidnapped, and on November 6 police said they killed Cité Soleil gang leader Mathias Saintil. Around November 12 police and Salvadoran troops retook the national stadium after about two years of gang control. A UN report says at least 1,167 people were killed from July to September.',
+    src: [['France 24: police retake national stadium, Nov 13', 'https://www.france24.com/en/americas/20261113-haitian-police-retake-national-stadium-from-gangs-after-two-years'], ['UN News: UN report on killings', 'https://news.un.org/en/story/2026/11/1168789'], ['Al Jazeera, Nov 7', 'https://www.aljazeera.com/news/2026/11/7/one-less-gang-leader-haitis-prime-minister-celebrates-police-operation'], ['AP via ClickOnDetroit, Oct 19', 'https://www.clickondetroit.com/news/world/2026/10/19/gangs-in-haiti-target-foreign-troops-in-biggest-attack-since-new-force-began-operations/'], ['Africanews: Chad to deploy 800 troops', 'https://www.africanews.com/amp/2026/03/21/chad-to-deploy-800-troops-to-haitis-gang-suppression-force-as-kenya-steps-back/']] },
   { theme: 'crime', iso: ['MEX'], date: 'Feb 2026', pin: [20.67, -103.35, 'Jalisco'],
     t: 'Cartel violence after "El Mencho"',
     d: 'Mexican forces killed Jalisco cartel leader Nemesio Oseguera, "El Mencho", in February 2026, setting off retaliation, under heavy US pressure to curb fentanyl.',
@@ -940,10 +1002,10 @@ export const BRIEF = {
     w: 'Ceasefire talks, oil prices, more Ukrainian strikes on refineries, and whether Europe seizes frozen Russian assets to fund Ukraine.' },
   JPN: { s: 'The world’s fourth-largest economy and America’s closest Pacific ally. Under Prime Minister Sanae Takaichi it is spending more on defence and has clashed with China over Taiwan.',
     e: 'After decades of near-zero inflation, prices and wages are finally rising, so the Bank of Japan has been slowly raising interest rates. Big stimulus spending has lifted stocks to records but weakened the yen and revived worries about Japan’s government debt, the highest in the rich world at over twice GDP. A shrinking, aging population is the long-term drag.',
-    i: [['China rift', 'Relations with Beijing broke down after Takaichi’s November 2025 comments on Taiwan, hurting tourism and trade.'], ['Weak yen', 'A cheap yen helps exporters such as Toyota but raises the cost of imported food and energy.'], ['Holder of US debt', 'Japan is the largest foreign owner of US Treasury bonds, so its interest rates ripple through global markets.']],
+    i: [['China rift', 'Relations with Beijing broke down after Takaichi’s November 2025 comments on Taiwan, hurting tourism and trade.'], ['Weak yen', 'A cheap yen helps exporters such as Toyota but raises the cost of imported food and energy. It passed 160 per US dollar on November 12, 2026, and Finance Minister Satsuki Katayama warned of action against “one-sided, rapid” moves.'], ['Holder of US debt', 'Japan is the largest foreign owner of US Treasury bonds, so its interest rates ripple through global markets.']],
     w: 'Bank of Japan rate moves, the yen, and tensions with China.' },
   DEU: { s: 'Europe’s largest economy and its industrial core, now rearming and loosening its strict debt rules under Chancellor Friedrich Merz.',
-    e: 'Germany shrank in 2023 and 2024 as cheap Russian gas disappeared and Chinese competition hit its carmakers and machinery firms. A huge new spending plan for defence and infrastructure is expected to lift growth to roughly 1% in 2026, but industry is still under pressure from high energy costs and US tariffs.',
+    e: 'Germany shrank in 2023 and 2024 as cheap Russian gas disappeared and Chinese competition hit its carmakers and machinery firms. A huge new spending plan for defence and infrastructure is expected to lift growth to roughly 1% in 2026, but industry is still under pressure from high energy costs and US tariffs. On November 13 the Bundestag budget committee agreed a 2027 budget with €210 billion in new borrowing, just under the 2021 record.',
     i: [['Car industry', 'Volkswagen, BMW and Mercedes are cutting jobs as they lose market share in China and face the shift to electric cars.'], ['Rearmament', 'Germany is building up its army and has become Ukraine’s largest military backer in Europe.'], ['Far right', 'The AfD is polling near the top nationally, putting pressure on the coalition.']],
     w: 'Whether the spending plan delivers growth, and the AfD’s rise.' },
   IND: { s: 'The world’s most populous country and fastest-growing major economy. It balances ties with the US and Russia while competing with China.',
@@ -956,7 +1018,7 @@ export const BRIEF = {
     w: 'Burnham’s first budget and how markets react to UK borrowing.' },
   FRA: { s: 'A nuclear power and the EU’s second-largest economy, gripped in 2026 by its worst unrest in decades over the cost of living.',
     e: 'France has one of the highest budget deficits in the euro area and debt above 110% of GDP. Repeated governments have fallen trying to pass budgets, because President Macron has no majority in parliament. Growth is modest, and investors now charge France more to borrow than some southern European countries.',
-    i: [['Street protests', 'October 2026 protests over prices and fuel turned violent, with 1,200 arrests in one day.'], ['Hung parliament', 'Neither the left, the centre nor the far-right National Rally can govern alone.'], ['2027 election', 'Macron cannot run again, and the National Rally has led many polls.']],
+    i: [['Street protests', 'October 2026 protests over prices and fuel turned violent, with 1,200 arrests in one day. November 14 was the fifth Saturday of nationwide protests in a row; the interior ministry counted 106,000 marchers, organisers 200,000.'], ['Hung parliament', 'Neither the left, the centre nor the far-right National Rally can govern alone.'], ['2027 election', 'Macron cannot run again, and the National Rally has led many polls.']],
     w: 'Whether a 2027 budget passes, more protests, and the race to succeed Macron.' },
   ITA: { s: 'The euro area’s third-largest economy, with one of Europe’s most stable governments under Giorgia Meloni.',
     e: 'Italy has grown slowly but steadily, helped by EU recovery funds and tourism. Its government debt, about 135% of GDP, is among the highest in the world, but the budget deficit has come down and borrowing costs have fallen, a sign of renewed investor confidence. A rapidly aging, shrinking population is the long-term problem.',
@@ -965,7 +1027,7 @@ export const BRIEF = {
   CAN: { s: 'A G7 economy with vast energy, mineral and farm resources, now trying hard to rely less on the United States, which buys about three-quarters of its exports.',
     e: 'US tariffs have hit steel, aluminium, autos and lumber, and a 50% tariff on about US$20 billion of goods in August 2026 deepened the fight. Growth has slowed, and unemployment rose to 6.7% in October 2026, a six-month high. Ottawa is responding with new trade deals in Asia and Europe, faster approval of pipelines and LNG export terminals to reach new buyers, and big defence spending. Housing affordability remains a major domestic issue.',
     i: [['Trade diversification', 'An EVs-for-canola deal with China, trade missions to India, Japan and Australia, and deeper ties with the EU.'], ['Defence', 'Canada hit NATO’s 2% target and became the first non-European partner in the EU’s €150 billion SAFE defence programme.'], ['USMCA review', 'The North American trade pact’s 2026 review will decide the terms of Canada’s most important market.'], ['Arctic', 'Melting ice and US interest in Greenland are making Arctic sovereignty and defence more urgent.']],
-    w: 'The USMCA review, threatened US tariffs on Canadian cars from January, whether the new Democratic Congress moves to repeal Trump’s Canada tariffs, and whether new markets in Asia and Europe can grow fast enough.' },
+    w: 'Whether talks with Trump produce a trade deal (Carney said on November 14 they are “making progress” but “not yet there”, and that Canada won’t accept a deal that hurts its auto sector), the USMCA review, threatened US tariffs on Canadian cars from January, whether the new Democratic Congress moves to repeal Trump’s Canada tariffs, and whether new markets in Asia and Europe can grow fast enough.' },
   BRA: { s: 'Latin America’s largest economy and a leading voice for the developing world. Lula was re-elected in October 2026.',
     e: 'Brazil is a farming and mining superpower, the top exporter of soybeans, coffee, beef and iron ore, much of it to China. Growth has been decent, but high government spending and debt have forced the central bank to keep interest rates among the world’s highest, near 15%, which weighs on business.',
     i: [['China trade', 'China is Brazil’s biggest customer, which links Brazil’s fortunes to Chinese demand.'], ['Amazon', 'Deforestation fell sharply under Lula, a key test of his green agenda.'], ['Polarisation', 'The Bolsonaro family’s challenge to the October result keeps politics tense.']],
@@ -980,15 +1042,15 @@ export const BRIEF = {
     w: 'Chinese demand for iron ore, which drives the budget.' },
   MEX: { s: 'The US’s largest trading partner and one of the world’s most violent countries because of cartel wars.',
     e: 'Manufacturing for the US market drives the economy, and companies moving production out of China have boosted investment. But US tariffs, uncertainty over the 2026 USMCA review and weak growth have hurt. Money sent home by Mexicans in the US is a major source of income.',
-    i: [['Cartels', 'The February 2026 killing of Jalisco cartel boss "El Mencho" set off retaliation.'], ['USMCA review', 'The 2026 review of the North American trade deal is critical for Mexico’s factories.']],
-    w: 'US tariffs and any US military action against cartels.' },
+    i: [['Cartels', 'The February 2026 killing of Jalisco cartel boss "El Mencho" set off retaliation.'], ['USMCA review', 'The 2026 review of the North American trade deal is critical for Mexico’s factories.'], ['Migrant caravan', 'On November 12, 2026 Trump threatened Mexico with “doubled tariffs” unless it stops a caravan of about 1,000 to 2,000 people that left Tapachula on November 10. President Sheinbaum says no caravan has reached the US border since Trump returned to office.']],
+    w: 'Whether Trump acts on the caravan tariff threat, a possible trade deal, which US Treasury Secretary Bessent says he is optimistic about, and any US military action against cartels.' },
   IDN: { s: 'The world’s fourth-most-populous country and largest Muslim-majority democracy, and Southeast Asia’s biggest economy.',
     e: 'Growth has held around 5% a year, powered by consumers and by nickel processing for EV batteries, where Indonesia now dominates world supply. Big spending pledges, including free school meals, have raised worries about the budget and pushed down the rupiah.',
-    i: [['Nickel', 'Indonesia banned raw nickel exports to force processing at home, mostly by Chinese firms.'], ['Protests', 'Deadly protests over lawmakers’ perks shook the government in 2025.']],
-    w: 'The rupiah and public finances.' },
+    i: [['Nickel', 'Indonesia banned raw nickel exports to force processing at home, mostly by Chinese firms.'], ['Protests', 'Deadly protests over lawmakers’ perks shook the government in 2025.'], ['Vice-presidency', 'Vice-President Gibran Rakabuming Raka, son of former president Joko Widodo, resigned on November 12, 2026 after courts ruled his foreign education papers did not meet election rules. The People’s Consultative Assembly must choose a successor from two candidates nominated by President Prabowo within 60 days.']],
+    w: 'Who replaces Gibran as vice-president, the rupiah and public finances.' },
   SAU: { lv: 2, s: 'The world’s top oil exporter and leader of OPEC+, spending heavily to diversify under Crown Prince Mohammed bin Salman.',
     e: 'Lower oil prices for much of 2025 pushed the budget into deficit and forced Riyadh to borrow and scale back some giant Vision 2030 projects such as Neom. The 2026 Gulf war and Hormuz disruption raised oil prices but also threatened its own exports and cities.',
-    i: [['Oil policy', 'OPEC+ output decisions move world fuel prices, including at Canadian pumps.'], ['Houthi attacks', 'The Houthis escalated attacks on Saudi Arabia and Red Sea shipping in 2026. On November 8 missile debris damaged the Aramco Tower in Riyadh.']],
+    i: [['Oil policy', 'OPEC+ output decisions move world fuel prices, including at Canadian pumps.'], ['Houthi attacks', 'The Houthis escalated attacks on Saudi Arabia and Red Sea shipping in 2026. On November 8 missile debris damaged the Aramco Tower in Riyadh. Syria has since sent soldiers for training and advice, and Egypt says its forces are helping defend sensitive sites in the kingdom.']],
     w: 'Oil prices, OPEC+ meetings, and whether the war with the Houthis widens.' },
   TUR: { lv: 1, s: 'A NATO member that controls the Bosporus and plays every side, from Ukraine to Russia to the Gulf.',
     e: 'Turkey is fighting chronic high inflation. After years of unorthodox low rates, the central bank raised rates sharply. Inflation fell but was still above 30% in mid-2026, far above its target, after the war-driven energy shock. The lira keeps hitting record lows.',
@@ -1010,13 +1072,13 @@ export const BRIEF = {
     e: 'Egypt is deeply indebted and has relied on bailouts from the IMF, the UAE and the Gulf. Houthi attacks on Red Sea shipping cut Suez Canal revenue, one of its biggest sources of dollars. Inflation has eased from record highs after the pound was devalued.',
     i: [['Suez revenue', 'Fewer ships through the Red Sea means fewer dollars.'], ['Nile dam', 'Egypt fears Ethiopia’s giant dam threatens its water supply.'], ['Gaza', 'Egypt shares Gaza’s only non-Israeli border crossing at Rafah.']],
     w: 'Shipping traffic through Suez and IMF reviews.' },
-  ESP: { s: 'One of Europe’s best-performing large economies, governed by a fragile minority government.',
+  ESP: { s: 'One of Europe’s best-performing large economies, heading to a snap general election on November 29, 2026.',
     e: 'Spain has grown faster than most of the euro area, helped by tourism, immigration and cheap solar power, and unemployment has fallen, though it remains the highest in the EU. Housing costs are the top public concern and have sparked protests.',
-    i: [['Housing', 'Rents and prices have surged, especially in Madrid, Barcelona and tourist areas.'], ['Politics', 'Corruption cases and a minority parliament make governing hard.']],
-    w: 'Housing protests and whether the government reaches its full term.' },
+    i: [['Housing', 'Rents and prices have surged, especially in Madrid, Barcelona and tourist areas.'], ['Politics', 'PM Pedro Sánchez called the snap election in October after parliament defeated his housing decrees. Corruption cases and a fragmented parliament have made governing hard.']],
+    w: 'The November 29 election and whether any bloc can form a majority.' },
   POL: { s: 'NATO’s front line with Russia and Belarus and one of Europe’s fastest-growing economies.',
     e: 'Poland’s economy has grown strongly for three decades and keeps outpacing Western Europe. It spends over 4% of GDP on defence, the highest share in NATO, and is the main hub for Western aid to Ukraine.',
-    i: [['Defence', 'Building one of Europe’s largest armies.'], ['Divided politics', 'A pro-EU government faces a nationalist president who can block laws.']],
+    i: [['Defence', 'Building one of Europe’s largest armies.'], ['Divided politics', 'A pro-EU government faces a nationalist president who can block laws.'], ['Kraków shooting', 'On November 7, 2026 a gunman killed six people in Kraków’s Main Market Square after killing his parents and sister. Prosecutors are treating it as terrorism.']],
     w: 'Russian drone and sabotage incidents near its border.' },
   UKR: { e: 'The war shrank the economy by about a third in 2022. It has partly recovered but depends on foreign aid to pay soldiers, pensions and public workers. Russian strikes on power plants cause regular blackouts. The EU has agreed large loans backed by frozen Russian assets, and rebuilding is estimated to cost over US$500 billion.' },
   ISR: { e: 'Israel’s tech-driven economy has proven resilient, but years of war have raised defence spending and the budget deficit, and the call-up of reservists has strained businesses. Credit agencies downgraded its rating during the wars.' },
@@ -1075,7 +1137,7 @@ Object.assign(BRIEF, {
   CYN: { s: 'The self-declared Turkish Republic of Northern Cyprus, recognised only by Turkey.', e: 'Depends on Turkey for money and trade.' },
   LUX: { s: 'A founding EU member and one of the world’s richest countries per person.', e: 'A major centre for investment funds and banking.' },
   GEO: { lv: 2, s: 'A South Caucasus country where the ruling Georgian Dream party has turned away from the EU, sparking daily protests since late 2024.', e: 'The government suspended EU accession talks and passed laws critics compare to Russia’s. Hundreds of protesters and opposition figures have been jailed. Georgia profits from trade routes that bypass Russia.' },
-  ARM: { lv: 1, s: 'A South Caucasus country that lost Nagorno-Karabakh to Azerbaijan in 2023 and is shifting away from Russia toward the West.', e: 'Armenia initialed a peace deal with Azerbaijan in August 2025, including a US-backed transit route through its south. Its economy grew fast as a hub for trade with Russia.' },
+  ARM: { lv: 1, s: 'A South Caucasus country that lost Nagorno-Karabakh to Azerbaijan in 2023 and is shifting away from Russia toward the West.', e: 'Armenia initialed a peace deal with Azerbaijan in August 2025, including a US-backed transit route through its south. Its economy grew fast as a hub for trade with Russia. On November 11, 2026 the Kremlin said Armenia had lost its voting rights in the Russia-led CSTO alliance, in which Armenia froze its participation in 2024.' },
   AZE: { lv: 1, s: 'An oil and gas exporter that retook Nagorno-Karabakh in 2023, ruled by President Ilham Aliyev.', e: 'Gas exports to Europe raised its importance after Russian supplies were cut. Relations with Moscow have soured, and a peace deal with Armenia awaits formal signing.' },
   /* ---- Central Asia ---- */
   KAZ: { s: 'Central Asia’s largest economy, rich in oil, uranium and metals, balancing Russia, China and the West.', e: 'Kazakhstan is the world’s top uranium producer. Most of its oil reaches markets through a pipeline across Russia, which Moscow has disrupted at times.' },
@@ -1101,13 +1163,13 @@ Object.assign(BRIEF, {
   BRN: { s: 'A small, oil-rich sultanate on Borneo.', e: 'Oil and gas fund generous public services.' },
   TLS: { s: 'Asia’s youngest democracy, which joined ASEAN in 2025.', e: 'Depends on a petroleum fund that is running down as offshore gas fields deplete.' },
   /* ---- Middle East ---- */
-  IRQ: { lv: 1, s: 'A major oil producer balancing between the US and Iran, with powerful Iran-aligned militias.', e: 'Oil pays for almost all government spending, so low prices hit hard. The US is drawing down its troops, and pressure is rising on Baghdad to rein in the militias. In the Kurdish region, the PUK quit the regional government on November 6 after a dispute with the rival KDP.' },
+  IRQ: { lv: 1, s: 'A major oil producer balancing between the US and Iran, with powerful Iran-aligned militias.', e: 'Oil pays for almost all government spending, so low prices hit hard. The US is drawing down its troops, and pressure is rising on Baghdad to rein in the militias. In the Kurdish region, the PUK quit the regional government on November 6 after a dispute with the rival KDP. On November 15 PM Ali al-Zaidi fired nine officials after an inquiry into fuel smuggling in Jurf al-Nasr, a stronghold of the Iran-aligned Kataib Hezbollah. With Hormuz restricted, Iraq is trucking crude to Syria’s Baniyas port.' },
   JOR: { s: 'A key US ally bordering Israel, the West Bank, Syria and Iraq.', e: 'Depends on foreign aid and hosts large numbers of Palestinian and Syrian refugees.' },
-  LBN: { lv: 2, s: 'A fragile state where the government is trying to disarm Hezbollah after its war with Israel.', e: 'Still recovering from a 2019 financial collapse in which depositors lost most of their savings. Israel keeps striking targets it links to Hezbollah. The UN force UNIFIL says it will start withdrawing after its mandate ends on December 31, 2026.' },
+  LBN: { lv: 2, s: 'A fragile state where the government is trying to disarm Hezbollah after its war with Israel.', e: 'Still recovering from a 2019 financial collapse in which depositors lost most of their savings. Israel keeps striking targets it links to Hezbollah. The UN force UNIFIL says it will start withdrawing after its mandate ends on December 31, 2026. On November 10 security forces arrested five alleged Hezbollah members, and PM Nawaf Salam said “the era of impunity is over.”' },
   KWT: { s: 'A small, oil-rich Gulf state that holds one of the oldest sovereign wealth funds.', e: 'Oil provides nearly all revenue. The emir suspended parliament in 2024.' },
   QAT: { s: 'A gas giant and key mediator between Israel and Hamas, the US and the Taliban, and others.', e: 'One of the world’s largest LNG exporters. Israel struck Hamas leaders in Doha in September 2025, a shock to Gulf security.' },
   OMN: { s: 'A neutral Gulf sultanate on the Strait of Hormuz that mediates between Iran and the West.', e: 'Oman is negotiating new shipping rules for Hormuz with Iran. Its economy relies on oil and gas.' },
-  YEM: { lv: 3, s: 'Split between the Iran-backed Houthis, who hold the capital Sanaa, and a Saudi-backed government in the south. The UN says the 2022 truce collapsed in July 2026, and the government launched a campaign to retake territory in October.', e: 'One of the world’s worst humanitarian crises. Houthi attacks on shipping and Saudi Arabia escalated in 2026; in November the Houthis fired missiles at Riyadh and said Saudi strikes killed 33 near Sanaa.' },
+  YEM: { lv: 3, s: 'Split between the Iran-backed Houthis, who hold the capital Sanaa, and a Saudi-backed government in the south. The UN says the 2022 truce collapsed in July 2026, and the government launched a campaign to retake territory in October.', e: 'One of the world’s worst humanitarian crises. Houthi attacks on shipping and Saudi Arabia escalated in 2026; in November the Houthis fired missiles at Riyadh and said Saudi strikes killed 33 near Sanaa. Saudi Arabia has drawn in Syrian and Egyptian military help, and the Yemeni government accuses Iran and Hezbollah of sending 21 experts to direct Houthi operations.' },
   /* ---- North Africa and Sahel ---- */
   MAR: { lv: 1, s: 'A North African monarchy that controls most of Western Sahara.', e: 'Growing car and phosphate industries, and it is co-hosting the 2030 World Cup. Gen Z protests in 2025 attacked spending on stadiums over hospitals and schools.' },
   DZA: { lv: 1, s: 'Africa’s largest country by area and a major gas supplier to Europe.', e: 'Oil and gas fund most of the state. It backs the Polisario Front in Western Sahara, and relations with Morocco and France are strained.' },
@@ -1129,13 +1191,13 @@ Object.assign(BRIEF, {
   GHA: { s: 'A stable democracy and Africa’s top gold producer.', e: 'Recovering from a 2022 debt default with an IMF programme. Record gold prices have helped.' },
   TGO: { s: 'A small West African state ruled by the same family since 1967.', e: 'A port economy. Constitutional changes let the leader stay in power indefinitely, sparking protests.' },
   BEN: { s: 'A West African democracy that faces growing jihadist attacks in the north.', e: 'Cotton and transit trade with Nigeria. Authorities said they foiled a coup attempt in December 2025.' },
-  CMR: { lv: 2, s: 'Ruled by Paul Biya, the world’s oldest head of state, since 1982. His re-election in October 2025 led to deadly protests.', e: 'Oil, cocoa and timber. Separatist conflict in English-speaking regions and Boko Haram in the north.' },
+  CMR: { lv: 2, s: 'Ruled by Paul Biya, the world’s oldest head of state, since 1982. His re-election in October 2025 led to deadly protests.', e: 'Oil, cocoa and timber. Separatist conflict in English-speaking regions and Boko Haram in the north. Legislative and local elections, delayed twice, are set for February 7, 2027.' },
   CAF: { lv: 2, s: 'One of the world’s poorest countries, where Russian Wagner fighters protect the government.', e: 'Diamonds and gold. Armed groups control much of the countryside.' },
   GNQ: { s: 'A small oil state ruled by the same president since 1979.', e: 'Oil wealth concentrated in a narrow elite.' },
   GAB: { s: 'An oil and manganese producer where coup leader Brice Oligui Nguema was elected president in 2025.', e: 'Oil provides most revenue, and debt is high.' },
   COG: { s: 'An oil-producing state ruled by Denis Sassou Nguesso for most of the past four decades.', e: 'Heavily indebted, including to China and oil traders.' },
   /* ---- East and Southern Africa ---- */
-  SSD: { lv: 2, s: 'The world’s youngest country, slipping back toward civil war after First Vice-President Riek Machar was arrested and put on trial in 2025.', e: 'Oil is almost the only export, and Sudan’s war damaged the pipeline it relies on.' },
+  SSD: { lv: 2, s: 'The world’s youngest country, slipping back toward civil war after First Vice-President Riek Machar was arrested and put on trial in 2025.', e: 'Oil is almost the only export, and Sudan’s war damaged the pipeline it relies on. The country’s first national election was pushed back on November 14 from December 22, 2026 to February 11, 2027.' },
   SOM: { lv: 3, s: 'Fighting the al-Qaeda-linked al-Shabaab, which controls much of the countryside.', e: 'Depends on remittances and livestock. An African Union force supports the government.' },
   SOL: { lv: 1, s: 'Somaliland, a self-declared state in northern Somalia that has run itself since 1991 and is seeking international recognition.', e: 'Its port of Berbera draws interest from the UAE, Ethiopia and the US.' },
   DJI: { s: 'A tiny state on the Bab-el-Mandeb strait hosting US, Chinese, French and Japanese military bases.', e: 'Earns money from ports and base rents, and handles most of Ethiopia’s trade.' },
@@ -1170,9 +1232,9 @@ Object.assign(BRIEF, {
   SLV: { s: 'Run by Nayib Bukele, whose mass gang crackdown has made it far safer but suspended many civil rights.', e: 'Holds prisoners deported from the US. Bitcoin was adopted as legal tender in 2021, later scaled back under an IMF deal.' },
   GTM: { s: 'Central America’s largest economy.', e: 'Remittances from the US are about a fifth of GDP, so US deportation policy matters greatly.' },
   BLZ: { s: 'A small English-speaking state on the Caribbean coast, with a long-running border claim by Guatemala.', e: 'Tourism and farming.' },
-  CUB: { lv: 1, s: 'A communist one-party state in its worst economic crisis since the 1990s.', e: 'Nationwide blackouts, food shortages and mass emigration. The fall of Maduro cut off its main source of subsidised oil. On November 5, 2026 the US widened sanctions to whole sectors of the economy and to China-based suppliers of Cuba’s military.' },
+  CUB: { lv: 2, s: 'A communist one-party state in its worst economic crisis since the 1990s.', e: 'Nationwide blackouts, food shortages and mass emigration. The fall of Maduro cut off its main source of subsidised oil. On November 5, 2026 the US widened sanctions to whole sectors of the economy and to China-based suppliers of Cuba’s military. On November 12 Trump said he wants to “get Cuba done” before leaving office and would “certainly consider” military force.' },
   JAM: { s: 'A Caribbean democracy that cut its debt dramatically.', e: 'Tourism and remittances. Hurricane Melissa caused severe damage in October 2025.' },
-  HTI: { lv: 3, s: 'Gangs control most of the capital, Port-au-Prince.', e: 'The economy has shrunk for years, and more than a million people are displaced. A UN-backed Gang Suppression Force began operations in 2026, and El Salvador sent up to 2,000 troops after four of its soldiers were kidnapped in October. Police said they killed gang leader Mathias Saintil in Cité Soleil on November 6.' },
+  HTI: { lv: 3, s: 'Gangs control most of the capital, Port-au-Prince.', e: 'The economy has shrunk for years, and more than a million people are displaced. A UN-backed Gang Suppression Force began operations in 2026, and El Salvador sent up to 2,000 troops after four of its soldiers were kidnapped in October. Police said they killed gang leader Mathias Saintil in Cité Soleil on November 6, and with Salvadoran troops retook the national stadium from gangs around November 12. A UN report says at least 1,167 people were killed from July to September.' },
   DOM: { s: 'The Caribbean’s largest economy and one of its fastest-growing.', e: 'Tourism, mining and free-trade zones. It has deported large numbers of Haitians.' },
   PRI: { s: 'A US territory whose residents are US citizens but cannot vote for president.', e: 'Recovering from a 2017 debt restructuring and hurricane damage.' },
   TTO: { s: 'A Caribbean energy producer close to Venezuela.', e: 'Gas and petrochemicals, and it hoped to develop gas fields shared with Venezuela.' },
